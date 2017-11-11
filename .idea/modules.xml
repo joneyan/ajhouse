@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/aj-common/aj-common.iml" filepath="$PROJECT_DIR$/aj-common/aj-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-dao/aj-manager-dao.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-dao/aj-manager-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-interface/aj-manager-interface.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-interface/aj-manager-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-pojo/aj-manager-pojo.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-pojo/aj-manager-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-service/aj-manager-service.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-service/aj-manager-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-web/aj-manager-web.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-web/aj-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-parent/aj-parent.iml" filepath="$PROJECT_DIR$/aj-parent/aj-parent.iml" />
+    </modules>
+  </component>
+</project>
