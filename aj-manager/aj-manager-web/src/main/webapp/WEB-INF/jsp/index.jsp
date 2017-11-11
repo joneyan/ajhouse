@@ -23,11 +23,23 @@
 <div data-options="region:'south'" style="padding:5px;background-color: #4cae4c;">
     系统版本：V2.0
 </div>
-<div data-options="region:'west'" style="width:200px;background-color: #00bbee">
+<div data-options="region:'west'" style="width:200px;">
     <div id="menu" class="easyui-accordion" style="opacity: 0.9">
         <div title="用户管理" data-options="selected:true,iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'user-list'}">查询用户</li>
+                <li>
+                    <span>普通用户管理</span>
+                    <ul>
+                        <li data-options="attributes:{'href':'user-list'}">查询用户</li>
+                    </ul>
+                </li>
+                <li>
+                    <span>管理员管理</span>
+                    <ul>
+                        <li data-options="attributes:{'href':'admin-add'}">新增管理</li>
+                        <li data-options="attributes:{'href':'admin-list'}">查询管理</li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div title="房源管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
@@ -63,6 +75,25 @@
                     <ul>
                         <li data-options="attributes:{'href':'doc-add'}">新增文档</li>
                         <li data-options="attributes:{'href':'doc-list'}">查看文档</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div title="城市区域管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+
+            <ul class="easyui-tree">
+                <li>
+                    <span>城市管理</span>
+                    <ul>
+                        <li data-options="attributes:{'href':'city-add'}">新增城市</li>
+                        <li data-options="attributes:{'href':'city-list'}">查看城市</li>
+                    </ul>
+                </li>
+                <li>
+                    <span>区域管理</span>
+                    <ul>
+                        <li data-options="attributes:{'href':'doc-add'}">新增区域</li>
+                        <li data-options="attributes:{'href':'doc-list'}">查看区域</li>
                     </ul>
                 </li>
             </ul>
