@@ -16,6 +16,8 @@ public class AjCityMapperTest {
     public void testSelectByPrimaryKey() throws Exception {
         //System.out.print(cityMapper);
         //System.out.print("332232332");
+
+        System.out.println("123123asd");
         AjCity ajCity = cityMapper.selectByPrimaryKey(1);
         System.out.print(ajCity.getName());
     }
