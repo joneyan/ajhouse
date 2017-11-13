@@ -15,7 +15,7 @@ public class AjDocsServiceImpl implements AjDocsService{
     private AjDocsMapper ajDocsMapper;
     @Override
     public int docAdd(AjDocs ajdocs) {
-        //少时诵诗书
+        //少时诵诗书sssssss
         int insert=0;
         try{
             insert = ajDocsMapper.insert(ajdocs);
