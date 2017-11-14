@@ -7,15 +7,17 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="toolbar">
     <div style="padding: 5px; background-color: #fff;">
         <label>菜单标题：</label>
         <input class="easyui-textbox" type="text" id="title">
         <label>菜单所属类：</label>
-        <select id="status" class="easyui-combobox">
-            <option value="0">全部</option>
-            <option value="1">正常</option>
-            <option value="2">下架</option>
+
+        <select id="status" class="easyui-combobox" style="width: 110px">
+
+        </select>
+
         </select>
         <!--http://www.cnblogs.com/wisdomoon/p/3330856.html-->
         <!--注意：要加上type="button",默认行为是submit-->
@@ -41,7 +43,7 @@
 
 
     function add() {
-        ddshop.addTabs('新增商品', 'item-add');
+        ajhouse.addTabs('新增菜单', 'menu-add');
     }
 
     function edit() {
@@ -109,12 +111,22 @@
         columns: [[
             //field title width列属性
             {field: 'ck', checkbox: true},
-            {field: 'id', title: '菜单编号', width: 100, sortable: true},
-            {field: 'name', title: '菜单名称', width: 100, sortable: true},
-            {field: 'createtime', title: '创建时间', width: 100},
-            {field: 'updatetime', title: '最后修改时间', width: 100},
-            {field: 'parentId', title: '所属模块', width: 100}
+            {field: 'name', title: '菜单名称', width: 100},
+            {field: 'createtime', title: '创建时间', width: 100,formatter: function (value, row, index) {
+                return moment(value).format('LL');
+            }},
+            {field: 'updatetime', title: '最后修改时间', width: 100,formatter: function (value, row, index) {
+                return moment(value).format('LL');
+            }},
+            {field: 'parentName', title: '所属模块', width: 100,sortable: true}
         ]]
+    });
+
+    //查询下拉框父标题
+    $('#status').combobox({
+        url:'menus/parent',
+        valueField:'id',
+        textField:'name',
     });
 </script>
 
