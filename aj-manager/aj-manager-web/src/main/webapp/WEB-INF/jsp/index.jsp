@@ -118,13 +118,15 @@
     moment.locale('zh-cn');
 </script>
 
-
 <!-- 自定义脚本 -->
 <script src="js/common.js"></script>
+
+
 <!-- 自定义js -->
 <script>
     ajhouse.registerMenuEvent();
 </script>
+
 <script>
     var time=new Date();
     $('#datetime').html(moment(time).format('YYYY 年 MM 月 DD 日 dddd a H : mm : ss'));
@@ -134,8 +136,6 @@
         $('#datetime').html(moment(time).format('YYYY 年 MM 月 DD 日 dddd a H : mm : ss'));
     }
     window.setInterval(function(){getdate()},1000);
-
-
 </script>
 </body>
 </html>

@@ -17,12 +17,41 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">文档内容：</td>
-                <td>
-                    <input class="easyui-textbox" type="text" id="docContent" name="docContent"
-                           data-options="validType:'length[0,150]',multiline:true" style="width:100%;height:60px;">
+                <td colspan="2">
+                    <!-- 加载编辑器的容器 -->
+                    <script id="container" name="docContent" type="text/plain">文档内容</script>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button onclick="submitForm()" class="easyui-linkbutton" type="button"
+                            data-options="iconCls:'icon-ok'">保存
+                    </button>
+                    <button onclick="clearForm()" class="easyui-linkbutton" type="button"
+                            data-options="iconCls:'icon-undo'">重置
+                    </button>
                 </td>
             </tr>
         </table>
     </form>
 </div>
+
+<script>
+    $('menuLeafid').combotree({
+        url:'docsmenu?parentid=0',
+        required:true,
+        onBeforeExpand:function(node){
+          var $currentTree =$('#menuLeafid').combotree('tree');
+          var option =$currentTree.tree('options');
+          option.url ='docsmenu?parentid='+node.id;
+        },
+        onBeforeSelect:function (node) {
+            var isLeaf=$('#cid').tree('isLeaf',node.target);
+            if(!isLeaf){
+                $.messager.alert('警告', '请选中最终的类别！', 'warning');
+                return false;
+            }
+        }
+    });
+</script>
