@@ -9,4 +9,7 @@ public interface AjDocsCustomMapper {
     int countItems();
 
     List<AjDocsCustom> listDocByPage(HashMap<String, Object> map);
+
+
+    List<AjDocsCustom> selectByExampleWithBLOBs(int id);
 }

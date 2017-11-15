@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.aj.ajhouse.dao.AjDocsCustomMapper" >
-
+  <resultMap id="BaseResultMap" type="com.aj.ajhouse.pojo.vo.AjDocsCustom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="do_ctitle" property="doCtitle" jdbcType="VARCHAR" />
+    <result column="menu_topid" property="menuTopid" jdbcType="INTEGER" />
+    <result column="menu_leafid" property="menuLeafid" jdbcType="INTEGER" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.aj.ajhouse.pojo.vo.AjDocsCustom" extends="BaseResultMap" >
+    <result column="doc_content" property="docContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     d.id, d.do_ctitle as doCtitle, d.menu_leafid as menuLeafid, d.creat_time as creatTime, d.update_time as updateTime, dm.name as menuname
   </sql>
@@ -12,7 +22,35 @@
     select count(1)
     from aj_docs d
   </select>
-
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
 
   <select id="listDocByPage" resultType="com.aj.ajhouse.pojo.vo.AjDocsCustom">
     SELECT 
@@ -33,5 +71,17 @@
     </choose>
 
     LIMIT #{page.offset},#{page.rows}
+  </select>
+
+
+  <select id="selectByExampleWithBLOBs" resultType="com.aj.ajhouse.pojo.vo.AjDocsCustom"  parameterType="_int" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    from aj_docs d
+    LEFT  JOIN  aj_docs_menu dm on d.menu_leafid = dm.id
+    WHERE d.id=#{id}
+
   </select>
 </mapper>

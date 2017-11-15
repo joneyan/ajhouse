@@ -11,4 +11,6 @@ public interface AjDocsService {
     int docAdd(AjDocs ajdocs);
 
     Result<AjDocsCustom> listDocByPage(Page page, Order order);
+
+    AjDocsCustom getEdit(int id);
 }

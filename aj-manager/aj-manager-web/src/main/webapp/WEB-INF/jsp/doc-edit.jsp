@@ -6,20 +6,24 @@
             <tr>
                 <td class="label">菜单列表：</td>
                 <td>
+                    <input type="hidden" name="menuname" id="menuname" value="${sessionScope.ajdocs.menuname}">
                     <input id="menuLeafid" name="menuLeafid" style="width:200px;">
                 </td>
             </tr>
             <tr>
                 <td class="label">菜单标题：</td>
                 <td>
-                    <input class="easyui-textbox" type="text" id="doCtitle" name="doCtitle"
+                    <input class="easyui-textbox" type="text" id="doCtitle" value="${ajdocs.doCtitle}" name="doCtitle"
                            data-options="required:true" style="width:100%">
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
+                    <input type="hidden" name="doccontent" id="doccontent" value="${ajdocs.docContent}">
                     <!-- 加载编辑器的容器 -->
-                    <script id="container" name="docContent" type="text/plain">文档内容</script>
+                    <script id="container" name="content" type="text/plain">
+
+                    </script>
                 </td>
             </tr>
 
@@ -48,9 +52,9 @@
             },
             //在表单提交之后
             success: function (data) {
-                    $.messager.alert('温馨提示', '恭喜!添加文档成功!');
-                    ajhouse.addTabs('查看文档', 'doc-list');
-                    ajhouse.closeTabs('新增文档');
+                $.messager.alert('温馨提示', '恭喜!添加文档成功!');
+                ajhouse.addTabs('查看文档', 'doc-list');
+                ajhouse.closeTabs('新增文档');
 
 
             }
@@ -59,13 +63,17 @@
     //初始化之前实例删除原有的容器
     UE.delEditor('container');
     var ue=UE.getEditor('container');
+
     $('#menuLeafid').combotree({
         url:'docsmenu?parentid=0',
         required:true,
-        onBeforeExpand:function(node){
-          var $currentTree =$('#menuLeafid').combotree('tree');
-          var option =$currentTree.tree('options');
-          option.url ='docsmenu?parentid='+node.id;
+        onBeforeExpand: function (node) {
+            //获取当前被点击的tree
+            var $currentTree = $('#menuLeafid').combotree('tree');
+            //调用easyui tree组件的options方法
+            var option = $currentTree.tree('options');
+            //修改option的url属性
+            option.url = 'docsmenu?parentid=' + node.id;
         },
         onBeforeSelect:function (node) {
             var isLeaf=$('#cid').tree('isLeaf',node.target);
@@ -73,6 +81,14 @@
                 $.messager.alert('警告', '请选中最终的类别！', 'warning');
                 return false;
             }
+        },
+        onLoadSuccess:function (node,data) {
+            var menuname = $('#menuname').val();
+           var doccontent= $('#doccontent').val();
+            $('#menuLeafid').combotree('setValues',menuname);
+            ue.addListener('ready',function () {
+                ue.setContent(doccontent);
+            })
         }
-    });
+        });
 </script>

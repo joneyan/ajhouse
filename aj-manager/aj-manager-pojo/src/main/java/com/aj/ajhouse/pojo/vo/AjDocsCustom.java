@@ -5,6 +5,7 @@ import com.aj.ajhouse.pojo.po.AjDocs;
 public class AjDocsCustom extends AjDocs {
     private String menuname;
 
+
     public String getMenuname() {
         return menuname;
     }

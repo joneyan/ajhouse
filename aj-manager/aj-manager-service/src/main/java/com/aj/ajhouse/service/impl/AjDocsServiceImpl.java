@@ -6,6 +6,7 @@ import com.aj.ajhouse.common.dto.Result;
 import com.aj.ajhouse.dao.AjDocsCustomMapper;
 import com.aj.ajhouse.dao.AjDocsMapper;
 import com.aj.ajhouse.pojo.po.AjDocs;
+import com.aj.ajhouse.pojo.po.AjDocsExample;
 import com.aj.ajhouse.pojo.vo.AjDocsCustom;
 import com.aj.ajhouse.service.AjDocsService;
 import org.slf4j.Logger;
@@ -53,5 +54,21 @@ public class AjDocsServiceImpl implements AjDocsService{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public AjDocsCustom getEdit(int id) {
+        AjDocsCustom ajDocsCustom=null;
+        try{
+            List<AjDocsCustom> ajDocs = ajDocsCustomMapper.selectByExampleWithBLOBs(id);
+            if(ajDocs.size()>0){
+                ajDocsCustom=ajDocs.get(0);
+            }
+
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return ajDocsCustom;
     }
 }
