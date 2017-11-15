@@ -1,8 +1,9 @@
 package com.aj.ajhouse.dao;
 
+import java.util.List;
+
 import com.aj.ajhouse.pojo.po.AjDocs;
 import com.aj.ajhouse.pojo.po.AjDocsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AjDocsMapper {

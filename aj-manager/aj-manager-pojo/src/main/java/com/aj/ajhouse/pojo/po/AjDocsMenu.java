@@ -82,4 +82,18 @@ public class AjDocsMenu {
     public void setOperatorid(Integer operatorid) {
         this.operatorid = operatorid;
     }
+
+    @Override
+    public String toString() {
+        return "AjDocsMenu{" +
+                "id=" + id +
+                ", parentid=" + parentid +
+                ", name='" + name + '\'' +
+                ", isParent=" + isParent +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                ", status=" + status +
+                ", operatorid=" + operatorid +
+                '}';
+    }
 }

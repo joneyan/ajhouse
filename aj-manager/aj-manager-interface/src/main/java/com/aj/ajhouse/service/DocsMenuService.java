@@ -14,8 +14,15 @@ import java.util.List;
 public interface DocsMenuService {
     Result<AjDocsMenuView> listMenuByPage(Page page, Order order, AjDocsMenuQuery query);
 
-    List<AjDocsMenu> listParent();
+    List<TreeNode> listParent();
 
     List<TreeNode> listDocMenuByPid(Integer parentid);
 
+    int saveMenu(AjDocsMenu ajDocsMenu);
+
+    int removeMenu(List<Integer> ids);
+
+    AjDocsMenu getMenuById(Integer id);
+
+    int updateMenuById(AjDocsMenu ajDocsMenu);
 }

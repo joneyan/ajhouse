@@ -13,16 +13,14 @@
         <label>菜单标题：</label>
         <input class="easyui-textbox" type="text" id="title">
         <label>菜单所属类：</label>
-
-        <select id="status" class="easyui-combobox" style="width: 110px">
-
-        </select>
-
-        </select>
+        <input id="menuId" name="id"  style="width:150px;">
         <!--http://www.cnblogs.com/wisdomoon/p/3330856.html-->
         <!--注意：要加上type="button",默认行为是submit-->
         <button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>
-        <%--<a onclick="searchForm()" class="easyui-linkbutton">搜索</a>--%>
+
+        <button onclick="clearForm()" type="button" class="easyui-linkbutton">清空</button>
+
+    <%--<a onclick="searchForm()" class="easyui-linkbutton">搜索</a>--%>
     </div>
     <div>
         <button onclick="add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
@@ -33,11 +31,20 @@
 <table id="dg"></table>
 <script>
 
+    //清空
+    function clearForm() {
+        $('#title').textbox({
+           value:''
+        });
+        $('#menuId').combotree('clear');
+    }
+
+
     //模糊查询
     function searchForm(){
         $('#dg').datagrid('load',{
             title:$('#title').val(),
-            status:$('#status').combobox('getValue')
+            status:$('#menuId').combotree('getValue')
         });
     }
 
@@ -48,6 +55,18 @@
 
     function edit() {
         console.log('edit');
+        var selections = $('#dg').datagrid('getSelections');
+        console.log(selections);
+        if (selections.length != 1) {
+            $.messager.alert('提示', '请选中一条记录！');
+            return;
+        }
+        $.messager.confirm('确认', '您确认想要修改该记录吗？', function (r) {
+            if (r) {
+                var id = selections[0].id;
+                ajhouse.addTabs("修改菜单","menusUpdate/"+id);
+            }
+        });
     }
 
     function remove() {
@@ -58,9 +77,6 @@
             $.messager.alert('提示', '请至少选中一条记录！');
             return;
         }
-        //至少选中了一条记录
-        //确认框，第一个参数为标题，第二个参数确认框的提示内容，第三参数是一个确认函数
-        //function(r) 如果用户点击的是"确定"，那么r=true
         $.messager.confirm('确认', '您确认想要删除记录吗？', function (r) {
             if (r) {
                 //为了存放id的集合
@@ -77,6 +93,7 @@
                     {'ids[]': ids},
                     //callback:后台处理成功的回调函数，相当于success，function类型
                     function (data) {
+                        $.messager.alert('温馨提示', data+'条记录删除成功！');
                         $('#dg').datagrid('reload');
                     },
                     //dataType:返回的数据类型，如：json，String类型
@@ -118,15 +135,23 @@
             {field: 'updatetime', title: '最后修改时间', width: 100,formatter: function (value, row, index) {
                 return moment(value).format('LL');
             }},
-            {field: 'parentName', title: '所属模块', width: 100,sortable: true}
+            {field: 'parentName', title: '所属模块', width: 100,sortable: true},
+            {field: 'operatorid', title: '操作者', width: 100}
         ]]
     });
 
+
     //查询下拉框父标题
-    $('#status').combobox({
+    $('#menuId').combotree({
+        url: 'menus/parent'
+    });
+
+
+    //查询下拉框父标题
+    /*$('#status').combobox({
         url:'menus/parent',
         valueField:'id',
-        textField:'name',
-    });
+        textField:'name'
+    });*/
 </script>
 

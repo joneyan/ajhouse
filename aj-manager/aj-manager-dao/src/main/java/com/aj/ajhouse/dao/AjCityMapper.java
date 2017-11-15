@@ -1,9 +1,11 @@
 package com.aj.ajhouse.dao;
 
+import java.util.List;
+
 import com.aj.ajhouse.pojo.po.AjCity;
 import com.aj.ajhouse.pojo.po.AjCityExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
 
 public interface AjCityMapper {
     int countByExample(AjCityExample example);

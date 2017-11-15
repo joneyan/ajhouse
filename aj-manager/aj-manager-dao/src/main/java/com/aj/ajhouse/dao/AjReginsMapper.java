@@ -1,8 +1,9 @@
 package com.aj.ajhouse.dao;
 
+import java.util.List;
+
 import com.aj.ajhouse.pojo.po.AjRegins;
 import com.aj.ajhouse.pojo.po.AjReginsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AjReginsMapper {

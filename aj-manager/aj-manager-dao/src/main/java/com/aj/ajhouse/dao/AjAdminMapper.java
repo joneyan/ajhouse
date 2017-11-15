@@ -1,8 +1,8 @@
 package com.aj.ajhouse.dao;
 
+import java.util.List;
 import com.aj.ajhouse.pojo.po.AjAdmin;
 import com.aj.ajhouse.pojo.po.AjAdminExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AjAdminMapper {

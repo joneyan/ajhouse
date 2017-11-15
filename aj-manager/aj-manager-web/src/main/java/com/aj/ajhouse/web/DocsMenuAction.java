@@ -13,9 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,17 +45,21 @@ public class DocsMenuAction {
         return result;
     }
 
+    //刘浩:分页查询的下拉框
     @ResponseBody
     @RequestMapping("menus/parent")
-    public List<AjDocsMenu>  listParent(Model model){
-        List<AjDocsMenu> list = null;
-        list = docsMenuService.listParent();
-        AjDocsMenu ajDocsMenu = new AjDocsMenu();
-        ajDocsMenu.setId(0);
-        ajDocsMenu.setName("全部");
-        list.add(ajDocsMenu);
+    public List<TreeNode>  listParent(){
+        List<TreeNode> list = null;
+        try{
+            list = docsMenuService.listParent();
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
         return list;
     }
+
+    //严静:帮助文档菜单的下拉框
     @ResponseBody
     @RequestMapping("/docsmenu")
     public List<TreeNode> listDocMenuByPid(@RequestParam("parentid") Integer parentid){
@@ -71,8 +73,60 @@ public class DocsMenuAction {
         return treeNodeList;
     }
 
+    //刘浩: 保存新增菜单
+    @ResponseBody
+    @RequestMapping(value = "/menus/addmenu",method = RequestMethod.POST)
+    public int saveMenu(AjDocsMenu ajDocsMenu){
+        int i = 0;
+        try{
+           i = docsMenuService.saveMenu(ajDocsMenu);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+    }
 
+    //刘浩: 删除菜单
+    @ResponseBody
+    @RequestMapping("/menus/batch")
+    public int removeMenu(@RequestParam("ids[]") List<Integer> ids){
+        int i = 0;
+        try {
+            i = docsMenuService.removeMenu(ids);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return i;
+    }
 
+    //刘浩: 修改菜单-获取被修改对象
+    @RequestMapping("/menusUpdate/{id}")
+    public String getMenuById(@PathVariable("id") Integer id, Model model){
+        AjDocsMenu ajDocsMenu = null;
+        try {
+            ajDocsMenu = docsMenuService.getMenuById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        model.addAttribute("ajDocsMenu",ajDocsMenu);
+        return "menu-update";
+    }
 
+    //刘浩: 修改菜单-修改
+    @ResponseBody
+    @RequestMapping("/menus/updateMenu")
+    public int updateMenuById(AjDocsMenu ajDocsMenu){
+        int i = 0;
+        try{
+            i = docsMenuService.updateMenuById(ajDocsMenu);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+    }
 
 }
