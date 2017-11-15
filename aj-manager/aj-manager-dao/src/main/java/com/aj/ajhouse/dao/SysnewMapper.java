@@ -10,4 +10,6 @@ public interface SysnewMapper {
 
 
     List<AjSysnews> listSysnewByPage(Map<String, Object> map);
+
+    int saveSysnew(AjSysnews ajSysnews);
 }

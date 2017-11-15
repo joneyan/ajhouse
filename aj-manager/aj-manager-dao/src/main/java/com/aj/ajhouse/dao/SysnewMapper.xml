@@ -29,4 +29,10 @@
     limit #{page.offset},#{page.rows}
   </select>
 
+<insert id="saveSysnew" parameterType="com.aj.ajhouse.pojo.po.AjSysnews">
+
+    insert into aj_sysnews (title,news_content,status) values (#{title},#{newsContent},0);
+
+  </insert>
+
 </mapper>

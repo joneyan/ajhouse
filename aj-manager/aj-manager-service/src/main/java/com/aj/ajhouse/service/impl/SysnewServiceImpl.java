@@ -47,5 +47,20 @@ public class SysnewServiceImpl implements SysnewService{
         }
         return result;
     }
+
+    @Override
+    public int saveSysnew(AjSysnews ajSysnews) {
+        int i = 0;
+        try {
+            sysnewDao.saveSysnew(ajSysnews);
+            i+=1;
+        }catch (Exception e){
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+
 }
 

@@ -9,4 +9,5 @@ public interface SysnewService {
 
     public Result<AjSysnews> listSysnewByPage(Page page) ;
 
+    int saveSysnew(AjSysnews ajSysnews);
 }

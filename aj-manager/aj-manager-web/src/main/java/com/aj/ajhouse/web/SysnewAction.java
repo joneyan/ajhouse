@@ -33,4 +33,18 @@ public class SysnewAction {
         }
         return list;
     }
+    @ResponseBody
+    @RequestMapping(value = "/sysnew")
+    public int sysnewAdd(AjSysnews ajSysnews ){
+        int i = 0;
+        try {
+            i = sysnewService.saveSysnew(ajSysnews);
+        }catch (Exception e){
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return i;
+    }
+
 }
+
