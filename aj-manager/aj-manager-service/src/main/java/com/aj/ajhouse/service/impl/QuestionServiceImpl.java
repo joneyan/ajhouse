@@ -27,6 +27,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Result<AjQuestions> listQuestionByPage(Page page){
         System.out.println("listQuestionByPage");
+
         Result<AjQuestions> result=null;
         try {
             Map<String, Object> map = new HashMap<String, Object>();
@@ -38,6 +39,7 @@ public class QuestionServiceImpl implements QuestionService {
             result.setTotal(total);
 
             List<AjQuestions> list = questionDao.listQuestionByPage(map);
+
             result.setRows(list);
 
         }catch (Exception e){
@@ -46,7 +48,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 
         }
-        System.out.println(result);
+
         return result;
     }
 }

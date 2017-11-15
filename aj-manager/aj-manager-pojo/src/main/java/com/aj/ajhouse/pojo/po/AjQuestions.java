@@ -72,4 +72,7 @@ public class AjQuestions {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+
+
 }

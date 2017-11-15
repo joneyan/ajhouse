@@ -7,7 +7,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
+<script src="js/dataFormat.js"></script>
 <div id="toolbar">
         <%--<div style="padding: 5px; background-color: #fff;">
             <label>菜单标题：</label>
@@ -57,12 +57,13 @@
 //    {field:'id',title:'新闻ID'},
     {field:'quesTitle',title:'问题标题'},
     {field:'quesContent',title:'问题内容'},
-    {field:'createtime',title:'问题创建日期'},
-    {field:'solvetime',title:'解决日期'},
+    {field:'createtime',title:'问题创建日期', formatter:ffff.formatDatebox, editor: 'datebox'},
+    {field:'solvetime',title:'解决日期', formatter:ffff.formatDatebox, editor: 'datebox'},
     {field:'userid',title:'问题所属用户id'},
     {field:'status',title:'问题状态'}
     ]]
     });
+
 
 </script>
 
