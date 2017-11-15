@@ -79,7 +79,8 @@ public class DocsMenuServiceImpl implements DocsMenuService{
                 AjDocsMenu ajDocsMenu = ajDocsMenus.get(i);
                 TreeNode treeNode = new TreeNode();
                 treeNode.setId((long)ajDocsMenu.getId());
-                treeNode.setText(ajDocsMenu.getIsParent()? "closed":"open");
+                treeNode.setText(ajDocsMenu.getName());
+                treeNode.setState(ajDocsMenu.getIsParent()? "closed":"open");
                 treeNodeList.add(treeNode);
             }
         }catch (Exception e){

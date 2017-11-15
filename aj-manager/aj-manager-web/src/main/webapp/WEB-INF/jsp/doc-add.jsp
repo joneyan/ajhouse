@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <div class="easyui-panel" title="商品详情" data-options="fit:true">
-    <form class="itemForm" id="itemAddForm" name="itemAddForm" method="post">
+    <form class="docForm" id="docAddForm" name="docAddForm" method="post">
         <table style="width:100%;">
             <tr>
                 <td class="label">菜单列表：</td>
@@ -38,7 +38,27 @@
 </div>
 
 <script>
-    $('menuLeafid').combotree({
+    //提交表单
+    function submitForm() {
+        $('#docAddForm').form('submit', {
+            url: 'doc',
+            //在表单提交之前触发
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            //在表单提交之后
+            success: function (data) {
+                    $.messager.alert('温馨提示', '恭喜!添加文档成功!');
+                    ajhouse.closeTabs('新增文档');
+                    ajhouse.addTabs('查看文档', 'doc-list');
+
+            }
+        });
+    }
+    //初始化之前实例删除原有的容器
+    UE.delEditor('container');
+    var ue=UE.getEditor('container');
+    $('#menuLeafid').combotree({
         url:'docsmenu?parentid=0',
         required:true,
         onBeforeExpand:function(node){
