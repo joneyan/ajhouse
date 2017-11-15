@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.SysnewMapper" >
+
+  <sql id="Base_Column_List">
+    sys.id, sys.title, sys.news_content as newsContent, sys.status
+  </sql>
+  <!--<sql id="Blob_Column_List">
+    p.param_data as paramData
+  </sql>-->
+
+  <select id="countSysnew" resultType="_int">
+    select count(1)
+    from aj_sysnews sys
+  </select>
+
+
+  <select id="listSysnewByPage" resultType="com.aj.ajhouse.pojo.po.AjSysnews">
+    select
+    <!--去重操作-->
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    <!--,
+    <include refid="Blob_Column_List"/>-->
+
+    from aj_sysnews sys /*left join tb_item_cat c on p.item_cat_id=c.id*/
+    limit #{page.offset},#{page.rows}
+  </select>
+
+</mapper>

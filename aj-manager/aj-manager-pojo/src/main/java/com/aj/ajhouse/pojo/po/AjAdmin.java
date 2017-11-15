@@ -19,6 +19,8 @@ public class AjAdmin {
 
     private Boolean isUse;
 
+    private Integer roleId;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class AjAdmin {
 
     public void setIsUse(Boolean isUse) {
         this.isUse = isUse;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

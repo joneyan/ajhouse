@@ -6,20 +6,20 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-dao-test.xml")
+//
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("classpath:spring/spring-dao-test.xml")
 public class AjCityMapperTest {
-    @Autowired
-    private AjCityMapper cityMapper;
-    @Test
-    public void testSelectByPrimaryKey() throws Exception {
-        //System.out.print(cityMapper);
-        //System.out.print("332232332");
-
-        System.out.println("123123asd");
-        AjCity ajCity = cityMapper.selectByPrimaryKey(1);
-        System.out.print(ajCity.getName());
-    }
+//    @Autowired
+//    private AjCityMapper cityMapper;
+//    @Test
+//    public void testSelectByPrimaryKey() throws Exception {
+//        //System.out.print(cityMapper);
+//        //System.out.print("332232332");
+//
+//        System.out.println("123123asd");
+//        AjCity ajCity = cityMapper.selectByPrimaryKey(1);
+//        System.out.print(ajCity.getName());
+//    }
 
 }

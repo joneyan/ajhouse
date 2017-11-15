@@ -1,5 +1,7 @@
 package com.aj.ajhouse.pojo.po;
 
+import java.util.Date;
+
 public class AjDocs {
     private Integer id;
 
@@ -8,6 +10,10 @@ public class AjDocs {
     private Integer menuTopid;
 
     private Integer menuLeafid;
+
+    private Date creatTime;
+
+    private Date updateTime;
 
     private String docContent;
 
@@ -41,6 +47,22 @@ public class AjDocs {
 
     public void setMenuLeafid(Integer menuLeafid) {
         this.menuLeafid = menuLeafid;
+    }
+
+    public Date getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getDocContent() {

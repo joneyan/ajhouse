@@ -233,66 +233,6 @@ public class AjCityExample {
             addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
-
-        public Criteria andReginIdIsNull() {
-            addCriterion("regin_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdIsNotNull() {
-            addCriterion("regin_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdEqualTo(Integer value) {
-            addCriterion("regin_id =", value, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdNotEqualTo(Integer value) {
-            addCriterion("regin_id <>", value, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdGreaterThan(Integer value) {
-            addCriterion("regin_id >", value, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("regin_id >=", value, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdLessThan(Integer value) {
-            addCriterion("regin_id <", value, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdLessThanOrEqualTo(Integer value) {
-            addCriterion("regin_id <=", value, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdIn(List<Integer> values) {
-            addCriterion("regin_id in", values, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdNotIn(List<Integer> values) {
-            addCriterion("regin_id not in", values, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdBetween(Integer value1, Integer value2) {
-            addCriterion("regin_id between", value1, value2, "reginId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReginIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("regin_id not between", value1, value2, "reginId");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
