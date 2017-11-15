@@ -149,7 +149,7 @@ public class DocsMenuServiceImpl implements DocsMenuService{
         return i;
     }
 
-    //根据id查找菜单,用户修改
+    //刘浩:根据id查找菜单,用户修改
     @Override
     public AjDocsMenu getMenuById(Integer id) {
         AjDocsMenu ajDocsMenu = null;
@@ -162,6 +162,7 @@ public class DocsMenuServiceImpl implements DocsMenuService{
         return ajDocsMenu;
     }
 
+    //刘浩:修改菜单功能
     @Override
     public int updateMenuById(AjDocsMenu ajDocsMenu) {
         int i = 0;
