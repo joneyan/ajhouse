@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.AjUserCustomMapper" >
+    <sql id="Base_Column_List" >
+        id, photo, accountnum, nickname, tel, email, create_time, lastlogin_time, status,
+        introduce, idcard, oprator_id, role
+    </sql>
+    <sql id="Where_Clause" >
+        <where>
+            <if test="query != null and query.accountnum != null and query.accountnum != '' ">
+                and accountnum like '%${query.accountnum}%'
+            </if>
+        </where>
+    </sql>
+
+    <select id="countUsers" resultType="_int">
+        select count(1)
+        from aj_user
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="listUsersByPage" resultType="com.aj.ajhouse.pojo.po.AjUser">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM aj_user
+        <include refid="Where_Clause"/>
+        <choose>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null">
+                <foreach collection="order.orderParams" item="item" open="order by " close="" separator=",">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                ORDER BY id DESC
+            </otherwise>
+        </choose>
+        LIMIT #{page.offset},#{page.rows}
+    </select>
+
+
+</mapper>

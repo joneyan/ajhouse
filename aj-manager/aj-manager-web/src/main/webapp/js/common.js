@@ -25,8 +25,9 @@ var ajhouse = {
                 closable:true
             });
         }
-
-
+    },
+    closeTabs:function(title){
+        $('#tab').tabs('close',title);
     }
 
 };

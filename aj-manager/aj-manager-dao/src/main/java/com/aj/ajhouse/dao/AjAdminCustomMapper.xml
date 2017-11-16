@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.AjAdminCustomMapper" >
+    <sql id="Base_Column_List" >
+        id, acountnum, password, belongto, create_time AS createTime ,update_time AS updateTime,operator_id AS operatorId, is_use AS isUse,role_id AS roleId
+    </sql>
+
+    <sql id="Where_Clause" >
+        <where>
+            <if test="query != null and query.acountnum != null and query.acountnum != '' ">
+                acountnum like '%${query.acountnum}%'
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="selectByAcountnum" resultType="com.aj.ajhouse.pojo.po.AjAdmin" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM aj_admin
+        WHERE acountnum = #{acountnum}
+    </select>
+
+    <select id="countAdmins" resultType="_int">
+        select count(1)
+        from aj_admin
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="listAdminsByPage" resultType="com.aj.ajhouse.pojo.po.AjAdmin">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM aj_admin
+        <include refid="Where_Clause"/>
+        <choose>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null">
+                <foreach collection="order.orderParams" item="item" open="order by " close="" separator=",">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                ORDER BY id DESC
+            </otherwise>
+        </choose>
+        LIMIT #{page.offset},#{page.rows}
+    </select>
+
+
+    <update id="updateAdmin" parameterType="com.aj.ajhouse.pojo.po.AjAdmin">
+         update aj_admin
+          set password = #{password,jdbcType=VARCHAR},
+              belongto = #{belongto,jdbcType=VARCHAR},
+              create_time = #{createTime,jdbcType=TIMESTAMP},
+              update_time = #{updateTime,jdbcType=TIMESTAMP},
+              operator_id = #{operatorId,jdbcType=INTEGER},
+              is_use = #{isUse,jdbcType=BIT},
+              role_id = #{roleId,jdbcType=INTEGER}
+              WHERE acountnum = #{acountnum,jdbcType=VARCHAR}
+    </update>
+</mapper>

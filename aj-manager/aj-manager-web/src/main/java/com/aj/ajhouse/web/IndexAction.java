@@ -8,12 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Scope("prototype")
 public class IndexAction {
+
     @RequestMapping("/")
-    public String toIndex(){
-        return "index";
+    public String toLogin() {
+        return "login";
     }
+
     @RequestMapping("/{page}")
-    public String toPage(@PathVariable("page") String page){
+    public String toPage(@PathVariable("page") String page) {
+
         return page;
+    }
+
+    @RequestMapping("/index")
+    public String toIndex() {
+
+        return "index";
     }
 }

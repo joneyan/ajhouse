@@ -6,6 +6,8 @@
     <result column="do_ctitle" property="doCtitle" jdbcType="VARCHAR" />
     <result column="menu_topid" property="menuTopid" jdbcType="INTEGER" />
     <result column="menu_leafid" property="menuLeafid" jdbcType="INTEGER" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.aj.ajhouse.pojo.po.AjDocs" extends="BaseResultMap" >
     <result column="doc_content" property="docContent" jdbcType="LONGVARCHAR" />
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, do_ctitle, menu_topid, menu_leafid
+    id, do_ctitle, menu_topid, menu_leafid, creat_time, update_time
   </sql>
   <sql id="Blob_Column_List" >
     doc_content
@@ -124,9 +126,11 @@
   </delete>
   <insert id="insert" parameterType="com.aj.ajhouse.pojo.po.AjDocs" >
     insert into aj_docs (id, do_ctitle, menu_topid, 
-      menu_leafid, doc_content)
+      menu_leafid, creat_time, update_time, 
+      doc_content)
     values (#{id,jdbcType=INTEGER}, #{doCtitle,jdbcType=VARCHAR}, #{menuTopid,jdbcType=INTEGER}, 
-      #{menuLeafid,jdbcType=INTEGER}, #{docContent,jdbcType=LONGVARCHAR})
+      #{menuLeafid,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{docContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.aj.ajhouse.pojo.po.AjDocs" >
     insert into aj_docs
@@ -142,6 +146,12 @@
       </if>
       <if test="menuLeafid != null" >
         menu_leafid,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
       </if>
       <if test="docContent != null" >
         doc_content,
@@ -159,6 +169,12 @@
       </if>
       <if test="menuLeafid != null" >
         #{menuLeafid,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="docContent != null" >
         #{docContent,jdbcType=LONGVARCHAR},
@@ -186,6 +202,12 @@
       <if test="record.menuLeafid != null" >
         menu_leafid = #{record.menuLeafid,jdbcType=INTEGER},
       </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.docContent != null" >
         doc_content = #{record.docContent,jdbcType=LONGVARCHAR},
       </if>
@@ -200,6 +222,8 @@
       do_ctitle = #{record.doCtitle,jdbcType=VARCHAR},
       menu_topid = #{record.menuTopid,jdbcType=INTEGER},
       menu_leafid = #{record.menuLeafid,jdbcType=INTEGER},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       doc_content = #{record.docContent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -210,7 +234,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       do_ctitle = #{record.doCtitle,jdbcType=VARCHAR},
       menu_topid = #{record.menuTopid,jdbcType=INTEGER},
-      menu_leafid = #{record.menuLeafid,jdbcType=INTEGER}
+      menu_leafid = #{record.menuLeafid,jdbcType=INTEGER},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +253,12 @@
       <if test="menuLeafid != null" >
         menu_leafid = #{menuLeafid,jdbcType=INTEGER},
       </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="docContent != null" >
         doc_content = #{docContent,jdbcType=LONGVARCHAR},
       </if>
@@ -238,6 +270,8 @@
     set do_ctitle = #{doCtitle,jdbcType=VARCHAR},
       menu_topid = #{menuTopid,jdbcType=INTEGER},
       menu_leafid = #{menuLeafid,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       doc_content = #{docContent,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -245,7 +279,9 @@
     update aj_docs
     set do_ctitle = #{doCtitle,jdbcType=VARCHAR},
       menu_topid = #{menuTopid,jdbcType=INTEGER},
-      menu_leafid = #{menuLeafid,jdbcType=INTEGER}
+      menu_leafid = #{menuLeafid,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -5,8 +5,6 @@ public class AjCity {
 
     private String name;
 
-    private Integer reginId;
-
     public Integer getId() {
         return id;
     }
@@ -21,13 +19,5 @@ public class AjCity {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getReginId() {
-        return reginId;
-    }
-
-    public void setReginId(Integer reginId) {
-        this.reginId = reginId;
     }
 }
