@@ -1,10 +1,9 @@
 package com.aj.ajhouse.dao;
 
+import java.util.List;
 import com.aj.ajhouse.pojo.po.AjAdmin;
 import com.aj.ajhouse.pojo.po.AjAdminExample;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface AjAdminMapper {
     int countByExample(AjAdminExample example);

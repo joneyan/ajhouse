@@ -10,4 +10,6 @@ public interface QuestionMapper {
     int countQuestion();
 
     List<AjQuestions> listQuestionByPage(Map<String, Object> map);
+
+    int updateBatch(Integer id);
 }

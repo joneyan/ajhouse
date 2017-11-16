@@ -27,14 +27,12 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Result<AjQuestions> listQuestionByPage(Page page){
         System.out.println("listQuestionByPage");
-
         Result<AjQuestions> result=null;
         try {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("page", page);
 
             result = new Result<AjQuestions>();
-
             int total = questionDao.countQuestion();
             result.setTotal(total);
 
@@ -50,6 +48,20 @@ public class QuestionServiceImpl implements QuestionService {
         }
 
         return result;
+    }
+
+    @Override
+    public int updateBatch(List<Integer> ids) {
+        int i=0;
+        try{
+            for (int j=0;ids.size()>j;j++){
+                i = questionDao.updateBatch(ids.get(j));
+            }
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
     }
 }
 

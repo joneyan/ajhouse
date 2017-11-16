@@ -11,9 +11,9 @@
 <div id="toolbar">
 
 </div>
-    <table id="table"></table>
+    <table id="tableSysnew"></table>
 <script>
-    $('#table').datagrid({
+    $('#tableSysnew').datagrid({
         url:'sysnews',
 //        //允许多列排序
 //        multiSort: true,

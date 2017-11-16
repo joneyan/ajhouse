@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @Scope("prototype")
@@ -34,5 +37,19 @@ public class QuestionAction {
             e.printStackTrace();
         }
         return list;
+    }
+    @RequestMapping(value = "/dquestion")
+    @ResponseBody
+    public int dquestions(@RequestParam("ids[]") List<Integer> ids){
+        System.out.println("dquestion");
+        int i=0;
+        try{
+            i = questionService.updateBatch(ids);
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
     }
 }
