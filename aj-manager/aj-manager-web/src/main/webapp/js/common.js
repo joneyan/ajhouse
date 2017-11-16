@@ -1,8 +1,5 @@
 
 var ajhouse = {
-    closeTabs:function (title) {
-        $('#tab').tabs('close',title);
-    },
     //点击左侧导航树上的节点，添加选项卡
     registerMenuEvent:function(){
         var _this = this;
@@ -28,6 +25,8 @@ var ajhouse = {
                 closable:true
             });
         }
+
+
     }
 
 };
