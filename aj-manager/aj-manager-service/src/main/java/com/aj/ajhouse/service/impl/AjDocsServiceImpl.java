@@ -28,6 +28,7 @@ public class AjDocsServiceImpl implements AjDocsService{
     public int docAdd(AjDocs ajdocs) {
         //少时诵诗书sssssss
         int insert=0;
+
         try{
             insert = ajDocsMapper.insert(ajdocs);
         }catch (Exception e){
