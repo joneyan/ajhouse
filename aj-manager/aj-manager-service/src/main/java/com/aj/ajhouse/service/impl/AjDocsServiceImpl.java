@@ -27,6 +27,7 @@ public class AjDocsServiceImpl implements AjDocsService{
     @Override
     public int docAdd(AjDocs ajdocs) {
         //少时诵诗书sssssss
+
         int insert=0;
 
         try{
