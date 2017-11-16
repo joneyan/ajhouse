@@ -41,7 +41,6 @@
                 return $(this).form('validate');
             },
 
-
             //在表单提交之后
            success: function (data) {
                     $.messager.alert('温馨提示', '恭喜!添加新闻成功!');
