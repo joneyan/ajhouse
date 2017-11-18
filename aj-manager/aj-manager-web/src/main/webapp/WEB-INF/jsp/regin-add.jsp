@@ -6,7 +6,7 @@
             <tr>
                 <td class="label">所属城市：</td>
                 <td>
-                    <input id="cid" name="id" style="width:200px;"
+                    <input id="cid" name="cityId" style="width:200px;"
                            data-options="required:true" >
                 </td>
             </tr>

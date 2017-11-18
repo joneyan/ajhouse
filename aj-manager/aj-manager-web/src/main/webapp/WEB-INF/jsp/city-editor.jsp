@@ -8,14 +8,14 @@
                 <td class="label">城市编号：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="cityId" name="id"
-                           readonly="readonly" style="width:200px" value="${cityId}">
+                           readonly="readonly" style="width:200px" value="${ajCity.id}">
                 </td>
             </tr>
             <tr>
                 <td class="label">城市名称：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="cityName2" name="name"
-                           data-options="required:true" style="width:200px" value="${cityName}">
+                           data-options="required:true" style="width:200px" value="${ajCity.name}">
                 </td>
             </tr>
 
@@ -47,7 +47,7 @@
     //提交表单
     function cityEditorSubmitForm(){
         $('#cityEditorForm').form('submit',{
-            url: 'city/editor2',
+            url: 'city/editor',
             onSubmit:function () {
                 return $(this).form('validate');
 

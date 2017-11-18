@@ -40,10 +40,9 @@
     }
 
     function reginListEdit() {
-        console.log('edit');
+        //console.log('edit');
         ajhouse.closeTabs('编辑区域');
         var selections = $('#regin_dg').datagrid('getSelections');
-        //console.log(selections);
         if (selections.length != 1) {
             //客户没有选择记录
             $.messager.alert('提示', '请选中一条记录！');
@@ -52,23 +51,9 @@
         //至少选中了一条记录
         $.messager.confirm('确认', '您确认想要编辑记录吗？', function (r) {
             if (r) {
-                //存放id
                 var id = selections[0].id;
-                //把id异步提交到后台
-                $.post(
-                    'regins/editor',
-                    {'id': id},
-                    //callback:后台处理成功的回调函数，相当于success，function类型
-                    function (data) {
-                        //$('#dg').datagrid('reload');
-                        //console.log('数据:'+data);
-                        //ajhouse.addTabs('编辑城市', 'city-editor');
-                    },
-                    //dataType:返回的数据类型，如：json，String类型
-                    'json'
-                );
-                ajhouse.addTabs('编辑区域', 'regin-editor');
-
+                ajhouse.addTabs("编辑区域","regins/"+id);
+                                                //action方法
             }
         });
     }
@@ -124,9 +109,9 @@
         //使得数据表格自适应填充父容器
         fit: true,
         //默认显示10条，这样的话就显示20条
-        pageSize: 20,
+        pageSize: 10,
         //分页列表
-        pageList: [20, 50, 100],
+        pageList: [5,10,20, 50, 100],
         //列属性
         columns: [[
             //field title width列属性

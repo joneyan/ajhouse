@@ -7,14 +7,14 @@
                 <td class="label">区域编号：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="reginsId" name="id" readonly="readonly"
-                           data-options="required:true" style="width:200px" value="${reginsId}">
+                           data-options="required:true" style="width:200px" value="${ajRegins.id}">
                 </td>
             </tr>
             <tr>
                 <td class="label">区域名称：</td>
                 <td>
                     <input class="easyui-textbox" type="text" id="reginName2" name="name"
-                           data-options="required:true" style="width:200px" value="${reginsName}">
+                           data-options="required:true" style="width:200px" value="${ajRegins.name}">
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
         url: 'citiesCats',
         required: true,
         onLoadSuccess:function () {
-            $('#treeNode').combotree('setValue',${cityId});
+            $('#treeNode').combotree('setValue',${ajRegins.cityId});
         }
     });
 
@@ -61,7 +61,7 @@
     //提交表单
     function reginEditorSubmitForm(){
         $('#reginEditorForm').form('submit',{
-            url: 'regins/editor2',
+            url: 'regins/editor',
             //在表单提交之前触发
             onSubmit:function () {
                 //如果有任意一个字段没有校验通过，返回false，不会提交表单

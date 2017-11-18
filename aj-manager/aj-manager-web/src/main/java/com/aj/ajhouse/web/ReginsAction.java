@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Scope;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -81,37 +83,27 @@ public class ReginsAction {
         return i;
     }
 
-    //点击编辑按钮，查询当前选中项
-    @ResponseBody
-    @RequestMapping("/regins/editor")
-    public void getReginsById(@RequestParam("id")int id, HttpSession session){
-        //System.out.println(id);
-        String name=null;
-        String cityName=null;
-        int cityId = 0;
+    //点击编辑按钮，查询当前选中项相关信息，数据回显到修改页面
+    @RequestMapping("/regins/{id}")
+    public String getReginsById(@PathVariable("id")Integer id, Model model){
+
+        AjRegins ajRegins = null;
         try {
-            AjRegins ajRegins = reginsService.selectReginsById(id);
-            name = ajRegins.getName();
-            /*AjCity ajCity = cityService.selectCityById(ajRegins.getCityId());
-            cityName = ajCity.getName();*/
-            cityId = ajRegins.getCityId();
+            ajRegins = reginsService.selectReginsById(id);
+            //name = ajRegins.getName();
+            //cityId = ajRegins.getCityId();
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
         }
-
-        //System.out.println(name);
-        session.setAttribute("reginsId",id);
-        session.setAttribute("reginsName",name);
-        //session.setAttribute("cityName",cityName);
-        session.setAttribute("cityId",cityId);
-        //return name;
-
+        model.addAttribute("ajRegins",ajRegins);
+        //修改页面的视图
+        return "regin-editor";
     }
 
     //编辑的提交
     @ResponseBody
-    @RequestMapping("/regins/editor2")      //@RequestParam("treeNode")TreeNode treeNode
+    @RequestMapping("/regins/editor")      //@RequestParam("treeNode")TreeNode treeNode
     public int updateRegins(AjRegins ajRegins){
         int i = 0;
         /*System.out.println(cityName);

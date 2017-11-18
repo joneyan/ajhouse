@@ -43,21 +43,7 @@
             if (r) {
                 //存放id
                 var id = selections[0].id;
-                //把id异步提交到后台
-                $.post(
-                    'city/editor',
-                    {'id': id},
-                    //callback:后台处理成功的回调函数，相当于success，function类型
-                    function (data) {
-                        //$('#city_dg').datagrid('reload');
-                        //console.log('数据:'+data);
-                        //ajhouse.addTabs('编辑城市', 'city-editor');
-                    },
-                    //dataType:返回的数据类型，如：json，String类型
-                    'json'
-                );
-                ajhouse.addTabs('编辑城市', 'city-editor');
-
+                ajhouse.addTabs('编辑城市', 'city/'+id);
             }
         });
 
@@ -122,7 +108,7 @@
         //默认显示10条
         pageSize: 10,
         //分页列表
-        pageList: [10,20, 50, 100],
+        pageList: [5,10,20, 50, 100],
         //列属性
         columns: [[
             //field title width列属性

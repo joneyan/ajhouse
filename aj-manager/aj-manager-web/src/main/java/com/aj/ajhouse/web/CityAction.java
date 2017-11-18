@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -91,27 +88,24 @@ public class CityAction {
         return list;
     }
 
-    @ResponseBody
-    @RequestMapping("/city/editor")
-    public String getCityById(@RequestParam("id")int id, HttpSession session){
-        //System.out.println(id);
-        String name=null;
+    //点击编辑按钮，查询当前选中项相关信息，数据回显到修改页面
+    @RequestMapping("/city/{id}")
+    public String getCityById(@PathVariable("id")Integer id,Model model){
+        AjCity ajCity=null;
         try {
-          name = cityService.selectCityById(id).getName();
+            ajCity = cityService.selectCityById(id);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
         }
-        //System.out.println(name);
-        session.setAttribute("cityId",id);
-        //将查询到的当前选项的城市名，存到session域
-        session.setAttribute("cityName",name);
 
-        return name;
+        model.addAttribute("ajCity",ajCity);
+
+        return "city-editor";
     }
 
     @ResponseBody
-    @RequestMapping("/city/editor2")
+    @RequestMapping("/city/editor")
     public int updateCity(AjCity ajcity){
         int i = 0 ;
         //System.out.println(city.getId()+","+city.getName());
