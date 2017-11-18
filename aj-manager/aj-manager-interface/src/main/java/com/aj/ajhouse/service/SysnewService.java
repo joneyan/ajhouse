@@ -14,5 +14,8 @@ public interface SysnewService {
 
     int saveSysnew(AjSysnews ajSysnews);
 
+    int pushNoSysnew(List<Integer> ids);
     int pushSysnew(List<Integer> ids);
+
+    int delSysnew(List<Integer> ids);
 }

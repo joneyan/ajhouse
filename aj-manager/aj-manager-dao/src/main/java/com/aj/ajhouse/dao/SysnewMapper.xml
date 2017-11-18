@@ -10,20 +10,22 @@
   </sql>-->
   <sql id="where_Clause">
     <where>
-      <if test="sysnewQuery!=null and sysnewQuery.title!=null and sysnewQuery.title!=''">
+      <if test="sysnewQuery!=null and sysnewQuery.title!=null ">
         sys.title like '%${sysnewQuery.title}%'
       </if>
+    and    status!=3
+
     </where>
   </sql>
 
-
+<!--统计总数-->
   <select id="countSysnew" resultType="_int">
     select count(1)
     from aj_sysnews sys
     <include refid="where_Clause"/>
   </select>
 
-
+<!--分页查询-->
   <select id="listSysnewByPage" resultType="com.aj.ajhouse.pojo.po.AjSysnews">
     select
     <!--去重操作-->
@@ -36,17 +38,27 @@
 
     from aj_sysnews sys /*left join tb_item_cat c on p.item_cat_id=c.id*/
     <include refid="where_Clause"/>
+
     limit #{page.offset},#{page.rows}
   </select>
-
+<!--增加新闻消息-->
 <insert id="saveSysnew" parameterType="com.aj.ajhouse.pojo.po.AjSysnews">
 
     insert into aj_sysnews (title,news_content,status) values (#{title},#{newsContent},0);
 
   </insert>
-
+<!--推送消息-->
   <update id="pushSysnew" parameterType="com.aj.ajhouse.pojo.po.AjSysnews">
     update aj_sysnews set `status`=1 where id=#{id};
   </update>
+<!--不推送-->
+  <update id="pushNoSysnew" parameterType="com.aj.ajhouse.pojo.po.AjSysnews">
+    update aj_sysnews set `status`=0 where id=#{id};
+  </update>
+<!--删除消息-->
+  <update id="delSysnew" parameterType="com.aj.ajhouse.pojo.po.AjSysnews">
+    update aj_sysnews set `status`=3 where id=#{id};
+  </update>
+
 
 </mapper>

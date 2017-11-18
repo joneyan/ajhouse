@@ -54,10 +54,35 @@ public class SysnewAction {
     @ResponseBody
     @RequestMapping(value = "pushSysnew" ,method = RequestMethod.POST)
     public Integer pushSysnew(@RequestParam("ids[]") List<Integer> ids){
-        System.out.println("pushSysnew");
         int i=0;
         try{
            i= sysnewService.pushSysnew(ids);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return  i;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "pushNoSysnew" ,method = RequestMethod.POST)
+    public Integer pushNoSysnew(@RequestParam("ids[]") List<Integer> ids){
+        int i=0;
+        try{
+           i= sysnewService.pushNoSysnew(ids);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return  i;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "delSysnew" )
+    public Integer delSysnew(@RequestParam("ids[]") List<Integer> ids){
+        int i=0;
+        try{
+           i= sysnewService.delSysnew(ids);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();

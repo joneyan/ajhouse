@@ -14,4 +14,8 @@ public interface SysnewMapper {
     int saveSysnew(AjSysnews ajSysnews);
 
     int pushSysnew(Integer integer);
+
+    int pushNoSysnew(Integer integer);
+
+    int delSysnew(Integer integer);
 }

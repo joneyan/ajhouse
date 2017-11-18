@@ -78,6 +78,37 @@ public class SysnewServiceImpl implements SysnewService{
         return i;
     }
 
+    @Override
+    public int pushNoSysnew(List<Integer> ids) {
+        int i=0;
+        try{
+            for (int j=0;j<ids.size();j++){
+                i=sysnewDao.pushNoSysnew(ids.get(j));
+            }
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+
+        return i;
+    }
+    @Override
+    public int delSysnew(List<Integer> ids) {
+        int i=0;
+        try{
+            for (int j=0;j<ids.size();j++){
+                i=sysnewDao.delSysnew(ids.get(j));
+            }
+
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+
+        return i;
+    }
+
 
 }
 

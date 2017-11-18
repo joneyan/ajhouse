@@ -27,7 +27,9 @@
             <a onclick="searchSysnew()" class="easyui-linkbutton">搜索</a>
     </div>
     <div>
+        <button onclick="pushNoSysnew()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">取消推送</button>
         <button onclick="pushSysnew()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">推送</button>
+        <button onclick="delSysnew()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
         <button onclick="addSysnew()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">增加</button>
     </div>
 </div>
@@ -42,8 +44,80 @@
     function addSysnew() {
             ajhouse.addTabs('新增系统新闻', 'sysnews-add');
     }
-    //todo
-       function pushSysnew() {
+
+       function delSysnew() {
+        var selections = $('#tableSysnew').datagrid('getSelections');
+        console.log(selections);
+        if (selections.length == 0) {
+            //客户没有选择记录
+            $.messager.alert('提示', '请至少选中一条新闻！');
+            return;
+        }
+        //至少选中了一条记录
+        //确认框，第一个参数为标题，第二个参数确认框的提示内容，第三参数是一个确认函数
+        //function(r) 如果用户点击的是"确定"，那么r=true
+        $.messager.confirm('确认', '您确认要删除新闻吗？', function (r) {
+            if (r) {
+                //为了存放id的集合
+                var ids = [];
+                //遍历选中的记录，将记录的id存放到js数组中
+                for (var i = 0; i < selections.length; i++) {
+                    ids.push(selections[i].id);
+                }
+                //把ids异步提交到后台
+                $.post(
+                    //url:请求后台的哪个地址来进行处理，相当于url,String类型
+                    'delSysnew',
+                    //data:从前台提交哪些数据给后台处理，相当于data，Object类型
+                    {'ids[]': ids},
+                    //callback:后台处理成功的回调函数，相当于success，function类型
+                    function (data) {
+                        $('#tableSysnew').datagrid('reload');
+                    },
+                    //dataType:返回的数据类型，如：json，String类型
+                    'json'
+                );
+
+            }
+        });
+    }
+       function pushNoSysnew() {
+        var selections = $('#tableSysnew').datagrid('getSelections');
+        console.log(selections);
+        if (selections.length == 0) {
+            //客户没有选择记录
+            $.messager.alert('提示', '请至少选中一条新闻！');
+            return;
+        }
+        //至少选中了一条记录
+        //确认框，第一个参数为标题，第二个参数确认框的提示内容，第三参数是一个确认函数
+        //function(r) 如果用户点击的是"确定"，那么r=true
+        $.messager.confirm('确认', '您确认要取消推送新闻吗？', function (r) {
+            if (r) {
+                //为了存放id的集合
+                var ids = [];
+                //遍历选中的记录，将记录的id存放到js数组中
+                for (var i = 0; i < selections.length; i++) {
+                    ids.push(selections[i].id);
+                }
+                //把ids异步提交到后台
+                $.post(
+                    //url:请求后台的哪个地址来进行处理，相当于url,String类型
+                    'pushNoSysnew',
+                    //data:从前台提交哪些数据给后台处理，相当于data，Object类型
+                    {'ids[]': ids},
+                    //callback:后台处理成功的回调函数，相当于success，function类型
+                    function (data) {
+                        $('#tableSysnew').datagrid('reload');
+                    },
+                    //dataType:返回的数据类型，如：json，String类型
+                    'json'
+                );
+
+            }
+        });
+    }
+    function pushSysnew() {
         var selections = $('#tableSysnew').datagrid('getSelections');
         console.log(selections);
         if (selections.length == 0) {
