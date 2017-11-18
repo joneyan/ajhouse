@@ -12,7 +12,7 @@ public class IndexAction {
 
     @RequestMapping("/")
     public String toIndex(){
-        return "index";
+        return "login";
     }
 
     @RequestMapping("/{page}")

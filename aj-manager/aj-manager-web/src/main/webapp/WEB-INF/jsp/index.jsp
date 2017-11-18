@@ -14,7 +14,7 @@
 <div style="height:120px;padding-left:10px;" data-options="region:'north'" >
     <div style="border-bottom: solid 5px cyan;">
         <img src="images/agency_logo.png" style="width: 400px;height: 50px;margin-left: 100px;">
-        <a href="#"><img src="images/sys-logout.png" style="float: right;margin-right: 50px;margin-top: 10px;"></a>
+        <a href="#" onclick="javaScript:checkLogout()"><img src="images/sys-logout.png" style="float: right;margin-right: 50px;margin-top: 10px;"></a>
     </div>
     <div>
         <p id="datetime" style="margin-right: 50px;font-weight: 600;font-size: large; float: right" ></p>
@@ -144,7 +144,14 @@
     }
     window.setInterval(function(){getdate()},1000);
 
-
+</script>
+<script type="text/javascript">
+    function checkLogout() {
+        var flag=confirm("确定退出吗");
+        if(flag){
+            top.location.href="logout";
+        }
+    }
 </script>
 </body>
 </html>
