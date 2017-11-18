@@ -7,7 +7,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<div id="toolbar">
+<div id="toolbarQues">
         <div style="padding: 5px; background-color: #fff;">
            <%-- <label>菜单标题：</label>
             <input class="easyui-textbox" type="text" id="title">
@@ -24,13 +24,13 @@
             <%--<a onclick="searchForm()" class="easyui-linkbutton">搜索</a>--%>
         </div>
         <div>
-            <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
+            <button onclick="removeQues()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
         </div>
 </div>
 
     <table id="tableQues"></table>
 <script>
-    function remove() {
+    function removeQues() {
         var selections = $('#tableQues').datagrid('getSelections');
         console.log(selections);
         if (selections.length == 0) {
@@ -73,7 +73,7 @@
         //允许多列排序
         multiSort: true,
         //将工具栏添加到数据表格中
-        toolbar: '#toolbar',
+        toolbar: '#toolbarQues',
         //隔行变色，斑马线效果
         striped: true,
         //添加分页工具栏

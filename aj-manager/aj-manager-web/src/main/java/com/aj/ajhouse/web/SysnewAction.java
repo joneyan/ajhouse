@@ -11,7 +11,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
 @Controller
 @Scope("prototype")
 public class SysnewAction {
@@ -44,6 +48,20 @@ public class SysnewAction {
             e.printStackTrace();
         }
         return i;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "pushSysnew" ,method = RequestMethod.POST)
+    public Integer pushSysnew(@RequestParam("ids[]") List<Integer> ids){
+        System.out.println("pushSysnew");
+        int i=0;
+        try{
+           i= sysnewService.pushSysnew(ids);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return  i;
     }
 
 }

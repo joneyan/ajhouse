@@ -35,4 +35,8 @@
 
   </insert>
 
+  <update id="pushSysnew" parameterType="com.aj.ajhouse.pojo.po.AjSysnews">
+    update aj_sysnews set `status`=1 where id=#{id};
+  </update>
+
 </mapper>
