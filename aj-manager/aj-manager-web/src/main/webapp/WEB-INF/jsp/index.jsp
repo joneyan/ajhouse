@@ -127,6 +127,8 @@
 <script src="js/common.js"></script>
 
 
+
+
 <!-- 自定义js -->
 <script>
     ajhouse.registerMenuEvent();

@@ -11,7 +11,7 @@
 
     <select id="countQuestion" resultType="_int">
         select count(1)
-        from aj_questions qu where status !=2
+        from aj_questions qu
     </select>
 
 
@@ -26,7 +26,7 @@
         <include refid="Blob_Column_List"/>
 -->
         from aj_questions qu
-        left join aj_user u on qu.userid=u.id where qu.status !=2 ORDER BY id
+        left join aj_user u on qu.userid=u.id  ORDER BY id
         limit #{page.offset},#{page.rows}
     </select>
 

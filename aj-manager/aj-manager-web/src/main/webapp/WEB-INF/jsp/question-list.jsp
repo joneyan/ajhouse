@@ -96,7 +96,28 @@
     {field:'createtime',title:'问题创建日期',formatter: function (value, row, index) {    return moment(value).format('LL');  }},
     {field:'solvetime',title:'解决日期',formatter: function (value, row, index) {    return moment(value).format('LL');  }},
     {field:'userid',title:'问题所属用户'},
-    {field:'status',title:'问题状态'}
+    {field: 'status', title: '问题状态', width: 100, formatter: function (value, row, index) {
+//                console.group();
+//                console.log(value);
+//                console.log(row);
+//                console.log(index);
+//                console.groupEnd();
+        switch (value) {
+            case 1 :
+                return "已解决";
+                break;
+            case 2:
+                return "已删除";
+                break;
+            case 0:
+                return "未解决";
+                break;
+            default:
+                return "未知";
+                break;
+        }
+
+    }}
     ]]
     });
 
