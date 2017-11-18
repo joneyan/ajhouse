@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.AjReginsCustomMapper" >
+
+    <sql id="Base_Column_List" >
+        r.id, r.name,r.city_id as cityId,c.name as cityName
+    </sql>
+    <sql id="Where_Clause" >
+        <where>
+            <!-- c.city_id != 0 -->
+            <if test="query != null and query.name != null and query.name != '' ">
+                and r.name like '%${query.name}%'
+            </if>
+            <if test="query != null and query.cityName != null and query.cityName != '' ">
+                and c.name like '%${query.cityName}%'
+            </if>
+        </where>
+    </sql>
+
+    <select id="countRegins" resultType="_int">
+        select count(1)
+        from aj_regins r
+        LEFT JOIN aj_city c ON r.city_id = c.id
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="listReginsByPage" resultType="com.aj.ajhouse.pojo.vo.AjReginsCustom">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM aj_regins r
+        LEFT JOIN aj_city c ON r.city_id = c.id
+        <include refid="Where_Clause"/>
+        <choose>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null and order.sort=='id'">
+                ORDER BY r.${order.sort}  ${order.order}
+            </when>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null and order.sort=='name'">
+                ORDER BY CONVERT(r.${order.sort} USING gbk) ${order.order}
+            </when>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null and order.sort=='cityName' or order.sort=='cityId'">
+                ORDER BY CONVERT(${order.sort} USING gbk) ${order.order}
+            </when>
+            <otherwise>
+                ORDER BY r.id ASC
+            </otherwise>
+        </choose>
+        LIMIT #{page.offset},#{page.rows}
+    </select>
+
+    <!--查询所有 按名字ASC 正序-->
+    <select id="listRegins" resultType="com.aj.ajhouse.pojo.vo.AjReginsCustom">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM aj_regins r
+        <include refid="Where_Clause"/>
+        ORDER BY CONVERT(r.name USING gbk) ASC
+    </select>
+
+    <update id="updateByCityIds" parameterType="java.util.List">
+        <!--<foreach collection="list" item="item" index="index" open="" close="" separator=";">-->
+            UPDATE aj_regins
+            SET city_id = 0
+            WHERE city_id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>

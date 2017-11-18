@@ -92,8 +92,8 @@
                 <li>
                     <span>区域管理</span>
                     <ul>
-                        <li data-options="attributes:{'href':'doc-add'}">新增区域</li>
-                        <li data-options="attributes:{'href':'doc-list'}">查看区域</li>
+                        <li data-options="attributes:{'href':'regin-add'}">新增区域</li>
+                        <li data-options="attributes:{'href':'regin-list'}">查看区域</li>
                     </ul>
                 </li>
             </ul>
@@ -141,6 +141,8 @@
         $('#datetime').html(moment(time).format('YYYY 年 MM 月 DD 日 dddd a H : mm : ss'));
     }
     window.setInterval(function(){getdate()},1000);
+
+
 </script>
 </body>
 </html>

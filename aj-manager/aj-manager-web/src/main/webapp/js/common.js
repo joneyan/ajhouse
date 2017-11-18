@@ -1,8 +1,5 @@
 
 var ajhouse = {
-    closeTabs:function (title) {
-        $('#tab').tabs('close',title);
-    },
     //点击左侧导航树上的节点，添加选项卡
     registerMenuEvent:function(){
         var _this = this;
@@ -28,6 +25,21 @@ var ajhouse = {
                 closable:true
             });
         }
+    },
+    closeTabs:function (title) {
+        $('#tab').tabs('close',title);
+    },
+    refreshTab:function (title) {
+        //var currentTab = $('#tab').tabs('getSelected');
+        var currentTab = $('#tab').tabs('getTab',title);
+        var url = $(currentTab.panel('options')).attr('href');
+        $('#tab').tabs('update', {
+            tab: currentTab,
+            options: {
+                href: url
+            }
+        });
+        currentTab.panel('refresh');
     }
 
 };

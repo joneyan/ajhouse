@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.AjCityCustomMapper" >
+
+    <sql id="Base_Column_List" >
+        r.id, r.name
+    </sql>
+    <sql id="Where_Clause" >
+        <where>
+            r.id != 0
+            <if test="query != null and query.name != null and query.name != '' ">
+                and r.name like '%${query.name}%'
+            </if>
+        </where>
+    </sql>
+
+    <select id="countCity" resultType="_int">
+        select count(1)
+        from aj_city r
+        <include refid="Where_Clause"/>
+    </select>
+
+    <select id="listCityByPage" resultType="com.aj.ajhouse.pojo.vo.AjCityCustom">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM aj_city r
+        /*LEFT JOIN tb_item_cat c ON i.cid = c.id*/
+        <include refid="Where_Clause"/>
+        <choose>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null  and order.sort=='id'">
+                ORDER BY r.${order.sort} ${order.order}
+            </when>
+            <when test="order != null and order.sort != null and order.order != null and order.orderParams != null  and order.sort=='name'">
+                ORDER BY CONVERT(r.${order.sort} USING gbk) ${order.order}
+                <!--<foreach collection="order.orderParams" item="item" open="order by " close="" separator=",">
+                    r.${item}
+                </foreach>-->
+            </when>
+            <otherwise>
+                ORDER BY r.id ASC
+            </otherwise>
+        </choose>
+        LIMIT #{page.offset},#{page.rows}
+    </select>
+
+    <!--查询所有 按名字ASC 正序-->
+    <select id="listCity" resultType="com.aj.ajhouse.pojo.vo.AjCityCustom">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM aj_city r
+        <include refid="Where_Clause"/>
+        ORDER BY CONVERT(r.name USING gbk) ASC
+    </select>
+
+</mapper>
