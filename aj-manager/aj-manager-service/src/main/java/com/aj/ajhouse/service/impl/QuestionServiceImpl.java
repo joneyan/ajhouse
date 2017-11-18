@@ -4,6 +4,7 @@ import com.aj.ajhouse.common.dto.Page;
 import com.aj.ajhouse.common.dto.Result;
 import com.aj.ajhouse.dao.QuestionMapper;
 import com.aj.ajhouse.pojo.po.AjQuestions;
+import com.aj.ajhouse.pojo.vo.QuestionQuery;
 import com.aj.ajhouse.service.QuestionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +26,13 @@ public class QuestionServiceImpl implements QuestionService {
 
 
     @Override
-    public Result<AjQuestions> listQuestionByPage(Page page){
+    public Result<AjQuestions> listQuestionByPage(Page page,QuestionQuery questionQuery){
         System.out.println("listQuestionByPage");
         Result<AjQuestions> result=null;
         try {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("page", page);
+            map.put("questionQuery", questionQuery);
 
             result = new Result<AjQuestions>();
             int total = questionDao.countQuestion();

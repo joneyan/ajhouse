@@ -23,6 +23,8 @@
            <!--注意：要加上type="button",默认行为是submit-->
            <button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>--%>
         <%--<a onclick="searchForm()" class="easyui-linkbutton">搜索</a>--%>
+            <input class="easyui-textbox" type="text" id="searchSysnew" name="searchSysnew">
+            <a onclick="searchSysnew()" class="easyui-linkbutton">搜索</a>
     </div>
     <div>
         <button onclick="pushSysnew()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">推送</button>
@@ -31,6 +33,12 @@
 </div>
     <table id="tableSysnew"></table>
 <script>
+    //模糊查询
+    function searchSysnew() {
+        $('#tableSysnew').datagrid('load',{
+            title:$('#searchSysnew').val(),
+        });
+    }
     function addSysnew() {
             ajhouse.addTabs('新增系统新闻', 'sysnews-add');
     }

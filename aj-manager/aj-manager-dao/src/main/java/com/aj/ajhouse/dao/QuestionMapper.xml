@@ -3,19 +3,28 @@
 <mapper namespace="com.aj.ajhouse.dao.QuestionMapper" >
 
     <sql id="Base_Column_List">
-        qu.id, qu.ques_title as quesTitle, qu.ques_content as quesContent, qu.createtime ,qu.solvetime, u.nickname as userid ,qu.status
+        qu.id, qu.ques_title as quesTitle, qu.ques_content as quesContent, qu.createtime ,qu.solvetime, u.nickname  ,qu.status
     </sql>
- <!--   <sql id="Blob_Column_List">
+ <!--  <sql id="Blob_Column_List">
           u.nickname
     </sql>-->
+
+    <sql id="where_Clause">
+        <where>
+        <if test="questionQuery!=null and questionQuery.quesTitle!=null and questionQuery.quesTitle!=''">
+            qu.ques_title like '%${questionQuery.quesTitle}%'
+        </if>
+        </where>
+    </sql>
 
     <select id="countQuestion" resultType="_int">
         select count(1)
         from aj_questions qu
+        <include refid="where_Clause"/>
     </select>
 
 
-    <select id="listQuestionByPage" resultType="com.aj.ajhouse.pojo.po.AjQuestions">
+    <select id="listQuestionByPage" resultType="com.aj.ajhouse.pojo.vo.Question">
         select
         <!--去重操作-->
         <if test="distinct">
@@ -26,7 +35,9 @@
         <include refid="Blob_Column_List"/>
 -->
         from aj_questions qu
-        left join aj_user u on qu.userid=u.id  ORDER BY id
+        left join aj_user u on qu.userid=u.id
+        <include refid="where_Clause"/>
+        ORDER BY id
         limit #{page.offset},#{page.rows}
     </select>
 

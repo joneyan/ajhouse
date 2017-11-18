@@ -3,6 +3,7 @@ package com.aj.ajhouse.web;
 import com.aj.ajhouse.common.dto.Page;
 import com.aj.ajhouse.common.dto.Result;
 import com.aj.ajhouse.pojo.po.AjSysnews;
+import com.aj.ajhouse.pojo.vo.SysnewQuery;
 import com.aj.ajhouse.service.SysnewService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +27,10 @@ public class SysnewAction {
 
     @RequestMapping(value = "/sysnews")
     @ResponseBody
-    public Result<AjSysnews> listItemsByPage(Page page){
+    public Result<AjSysnews> listItemsByPage(Page page, SysnewQuery sysnewQuery){
         Result<AjSysnews> list=null;
         try{
-           list=sysnewService.listSysnewByPage(page);
+           list=sysnewService.listSysnewByPage(page, sysnewQuery);
 
         }catch(Exception e){
             logger.error(e.getMessage(),e);

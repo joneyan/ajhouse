@@ -7,21 +7,23 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
 <div id="toolbarQues">
-        <div style="padding: 5px; background-color: #fff;">
-           <%-- <label>菜单标题：</label>
-            <input class="easyui-textbox" type="text" id="title">
-            <label>菜单所属类：</label>
---%>
-         <%--   <select id="status" class="easyui-combobox" style="width: 110px">
+    <div style="padding: 5px; background-color: #fff;">
+                        <%-- <label>菜单标题：</label>
+                 <input class="easyui-textbox" type="text" id="title">
+                 <label>菜单所属类：</label>
+                --%>
+               <%-- <select id="status" class="easyui-combobox" style="width: 110px">
 
-            </select>
+                </select>
 
-            </select>
-            <!--http://www.cnblogs.com/wisdomoon/p/3330856.html-->
-            <!--注意：要加上type="button",默认行为是submit-->
-            <button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>--%>
-            <%--<a onclick="searchForm()" class="easyui-linkbutton">搜索</a>--%>
+                </select>
+                  <!--http://www.cnblogs.com/wisdomoon/p/3330856.html-->
+                  <!--注意：要加上type="button",默认行为是submit-->--%>
+            <%--<button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>--%>
+                    <input class="easyui-textbox" type="text" id="searchQues" name="searchQues">
+                    <a onclick="searchQues()" class="easyui-linkbutton">搜索</a>
         </div>
         <div>
             <button onclick="removeQues()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
@@ -30,6 +32,12 @@
 
     <table id="tableQues"></table>
 <script>
+    //模糊查询
+    function searchQues() {
+            $('#tableQues').datagrid('load',{
+                quesTitle:$('#searchQues').val(),
+            });
+    }
     function removeQues() {
         var selections = $('#tableQues').datagrid('getSelections');
         console.log(selections);
@@ -95,7 +103,7 @@
     {field:'quesContent',title:'问题内容'},
     {field:'createtime',title:'问题创建日期',formatter: function (value, row, index) {    return moment(value).format('LL');  }},
     {field:'solvetime',title:'解决日期',formatter: function (value, row, index) {    return moment(value).format('LL');  }},
-    {field:'userid',title:'问题所属用户'},
+    {field:'nickname',title:'问题所属用户'},
     {field: 'status', title: '问题状态', width: 100, formatter: function (value, row, index) {
 //                console.group();
 //                console.log(value);

@@ -4,6 +4,7 @@ import com.aj.ajhouse.common.dto.Page;
 import com.aj.ajhouse.common.dto.Result;
 import com.aj.ajhouse.pojo.po.AjQuestions;
 import com.aj.ajhouse.pojo.po.AjSysnews;
+import com.aj.ajhouse.pojo.vo.QuestionQuery;
 import com.aj.ajhouse.service.QuestionService;
 import com.aj.ajhouse.service.SysnewService;
 import org.slf4j.Logger;
@@ -27,10 +28,10 @@ public class QuestionAction {
 
     @RequestMapping(value = "/questions")
     @ResponseBody
-    public Result<AjQuestions> listQuestionByPage(Page page){
+    public Result<AjQuestions> listQuestionByPage(Page page, QuestionQuery questionQuery){
         Result<AjQuestions> list=null;
         try{
-           list=questionService.listQuestionByPage(page);
+           list=questionService.listQuestionByPage(page,questionQuery);
 
         }catch(Exception e){
             logger.error(e.getMessage(),e);
