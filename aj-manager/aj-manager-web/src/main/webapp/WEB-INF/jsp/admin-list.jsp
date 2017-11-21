@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<div id="toolbar">
+<div id="toolbarAdmin">
     <div style="padding: 5px; background-color: #fff;">
         <label>管理员账户：</label>
         <input class="easyui-textbox" type="text" id="title">
@@ -15,12 +15,12 @@
         <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
     </div>
 </div>
-<table id="dg"></table>
+<table id="dgAdmin"></table>
 <script>
 
     //模糊查询
     function searchForm(){
-        $('#dg').datagrid('load',{
+        $('#dgAdmin').datagrid('load',{
             acountnum:$('#title').val()
         });
     }
@@ -32,7 +32,7 @@
     }
 
     function edit() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#dgAdmin').datagrid('getSelections');
         if (selections.length != 1) {
             $.messager.alert('提示', '请选中一条记录！');
             return;
@@ -48,7 +48,7 @@
     }
 
     function remove() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#dgAdmin').datagrid('getSelections');
         if (selections.length == 0) {
             //客户没有选择记录
             $.messager.alert('提示', '请至少选中一条记录！');
@@ -76,7 +76,7 @@
                         if(data>0){
                             $.messager.alert('提示','删除成功');
                         }
-                        $('#dg').datagrid('reload');
+                        $('#dgAdmin').datagrid('reload');
                     },
                     //dataType:返回的数据类型，如：json，String类型
                     'json'
@@ -87,11 +87,11 @@
     }
 
     //初始化数据表格
-    $('#dg').datagrid({
+    $('#dgAdmin').datagrid({
         //允许多列排序
         multiSort: true,
         //将工具栏添加到数据表格中
-        toolbar: '#toolbar',
+        toolbar: '#toolbarAdmin',
         //请求远程服务器上的URL http://localhost:8080/ajhouse/items
         url: 'admin',
         //隔行变色，斑马线效果
@@ -103,9 +103,9 @@
         //使得数据表格自适应填充父容器
         fit: true,
         //默认显示10条，这样的话就显示20条
-        pageSize: 20,
+        pageSize: 2,
         //分页列表
-        pageList: [20, 50, 100],
+        pageList: [2, 5, 10],
         //列属性
         columns: [[
             //field title width列属性

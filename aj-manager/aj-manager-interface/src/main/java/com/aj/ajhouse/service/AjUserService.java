@@ -9,6 +9,7 @@ import com.aj.ajhouse.pojo.vo.UserQuery;
 public interface AjUserService {
 
     Result<AjUser> listUserByPage(Page page, Order order, UserQuery query);
-
+    AjUser findById(int id);
+    int updateUser(AjUser ajUser);
 
 }

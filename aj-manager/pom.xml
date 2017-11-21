@@ -100,8 +100,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baidu</groupId>
-            <artifactId>ueditor</artifactId>
+        <groupId>com.baidu</groupId>
+        <artifactId>ueditor</artifactId>
         </dependency>
 
     </dependencies>
