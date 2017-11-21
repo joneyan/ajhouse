@@ -29,6 +29,8 @@ public class AjUser {
 
     private Integer role;
 
+    private String password;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class AjUser {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

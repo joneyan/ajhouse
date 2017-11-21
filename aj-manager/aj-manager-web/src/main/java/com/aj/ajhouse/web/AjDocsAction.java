@@ -11,12 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpSession;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Scope("prototype")
@@ -54,17 +50,36 @@ public class AjDocsAction {
         }
         return result;
     }
-    @ResponseBody
-    @RequestMapping(value="/docc/findedit", method = RequestMethod.GET)
-    public String getEdit(@RequestParam("id[]") int id, HttpSession session){
+
+    @RequestMapping(value="/docc/findedit/{id}", method = RequestMethod.GET)
+    public String getEdit(@PathVariable("id") int id, Model model){
         try{
             AjDocsCustom ajDocs=ajDocsService.getEdit(id);
             System.out.println(ajDocs.getMenuname()+"222222222222222");
-            session.setAttribute("ajdocs",ajDocs);
+            model.addAttribute("ajdocs",ajDocs);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
         }
-        return "1";
+        return "doc-edit";
+    }
+
+    /**
+     * 严静：修改文档
+     * @param ajDocs
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/doc/update")
+    public int modifyDoc(AjDocs ajDocs){
+        System.out.println(ajDocs.getDocContent()+"dsfaf");
+        int i=0;
+        try{
+            i=ajDocsService.modifyDoc(ajDocs);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
     }
 }

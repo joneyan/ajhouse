@@ -13,4 +13,6 @@ public interface AjDocsService {
     Result<AjDocsCustom> listDocByPage(Page page, Order order);
 
     AjDocsCustom getEdit(int id);
+
+    int modifyDoc(AjDocs ajDocs);
 }

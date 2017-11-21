@@ -25,16 +25,8 @@
         $.messager.confirm('确认','你确定要对这条文档进行编辑吗?',function (r) {
             if(r){
                 var id=selections[0].id;
-                $.get(
-                    //url请求后台那个地址来进行处理
-                    'docc/findedit',
-                    {'id[]':id},
-                    //后台处理成功后的回调函数,相当于success,function类型.
-                    function (data){
-                       ajhouse.addTabs('编辑文档','doc-edit');
-                    },
-                    'json'
-                );
+                ajhouse.addTabs("修改文档","docc/findedit/"+id);
+
             }
         })
     }

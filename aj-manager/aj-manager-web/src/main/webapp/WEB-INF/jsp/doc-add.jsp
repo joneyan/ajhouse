@@ -49,6 +49,7 @@
             //在表单提交之后
             success: function (data) {
                     $.messager.alert('温馨提示', '恭喜!添加文档成功!');
+                      ajhouse.closeTabs('查看文档');
                     ajhouse.addTabs('查看文档', 'doc-list');
                     ajhouse.closeTabs('新增文档');
 
@@ -58,7 +59,11 @@
     }
     //初始化之前实例删除原有的容器
     UE.delEditor('container');
-    var ue=UE.getEditor('container');
+    var ue=UE.getEditor('container',{
+        initialFrameWidth: '100%',
+        initialFrameHeight: '300',
+        serverUrl:'file/upload'
+    });
     $('#menuLeafid').combotree({
         url:'docsmenu?parentid=0',
         required:true,
