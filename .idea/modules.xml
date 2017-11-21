@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-service/aj-manager-service.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-service/aj-manager-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/aj-manager/aj-manager-web/aj-manager-web.iml" filepath="$PROJECT_DIR$/aj-manager/aj-manager-web/aj-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/aj-parent/aj-parent.iml" filepath="$PROJECT_DIR$/aj-parent/aj-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aj-portal-web/aj-portal-web.iml" filepath="$PROJECT_DIR$/aj-portal-web/aj-portal-web.iml" />
     </modules>
   </component>
 </project>
