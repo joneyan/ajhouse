@@ -15,7 +15,7 @@
                     <input id="updateMenuBox" class="easyui-combotree"  data-options="required:true" name="parentid" style="width:200px;">
                 </td>
                 <td>
-                    <input type="hidden" name="operatorid" value="222">
+                    <input type="hidden" name="operatorid" value="${sessionScope.admin.id}">
                 </td>
                 <td>
                     <input type="hidden" name="id" value="${ajDocsMenu.id}">
@@ -58,7 +58,7 @@
                 if (data > 0) {
                     $.messager.alert('温馨提示', '恭喜！修改菜单成功！');
                     ajhouse.addTabs('查看菜单', 'menu-list');
-                    $('#dg').datagrid('reload');
+                    $('#dgmenu').datagrid('reload');
                     ajhouse.closeTabs('修改菜单');
                 }
             }
