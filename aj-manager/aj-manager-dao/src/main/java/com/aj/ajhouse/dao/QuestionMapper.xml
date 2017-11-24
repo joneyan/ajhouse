@@ -12,8 +12,9 @@
     <sql id="where_Clause">
         <where>
         <if test="questionQuery!=null and questionQuery.quesTitle!=null and questionQuery.quesTitle!=''">
-           and  qu.ques_title like '%${questionQuery.quesTitle}%'
+             qu.ques_title like '%${questionQuery.quesTitle}%'
         </if>
+           and qu.status!=2
         </where>
     </sql>
 
@@ -36,7 +37,7 @@
 -->
         from aj_questions qu
         left join aj_user u on qu.userid=u.id
-        WHERE qu.status!=2
+
         <include refid="where_Clause"/>
         ORDER BY id
         limit #{page.offset},#{page.rows}

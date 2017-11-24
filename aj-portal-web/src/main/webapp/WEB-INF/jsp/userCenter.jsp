@@ -3,6 +3,11 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-underscore.min.js"></script>
+<script type="text/javascript" src="js/Member_Web_User_Message.js"></script>
+
 <html xmlns="http://www.w3.org/1999/xhtml" lang="gb2312">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -48,7 +53,7 @@
                     <li>
                         <i class="iconfont phoneIcon"></i>
                         <div class="dialog">
-                            <div class="text">您已通过<span>${sessionScope.ajUser.tel}</span>认证</div>
+                            <div class="text">您已通过<span id="userTel">${sessionScope.ajUser.tel}</span>认证</div>
                             <div class="corner"></div>
                             <div class="border"></div>
                             <div class="masker"></div>
@@ -97,7 +102,7 @@
                     <a href="http://user.anjuke.com/member/loan/55171663/"><i class="iconfont">&#xE141;</i>贷款</a>
                 </li>
                 <li> -->
-                <a href="questionAns/${sessionScope.ajUser.tel}"<%--id=11--%> <%--target="_blank"--%>><i class="iconfont"></i>我的回答</a>
+                    <a href="questionAns/${sessionScope.ajUser.tel}"<%--id=11--%> <%--target="_blank"--%>><i class="iconfont"></i>我的回答</a>
 
                 <li>
                     <a href="userX/${sessionScope.ajUser.tel}"<%--id=11--%> class=""><i class="iconfont"></i>个人资料</a>
@@ -130,7 +135,7 @@
                     <p class="rh-title">您可能感兴趣的房源</p>
                     <ul class="rh-items">
                         <li class="rh-item">
-                            <a href="#" class="rh-item-content">
+                            <a href="#" class="rh-item-content" >
                                 <img src="./用户中心－看房记录_files/240x180c.jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">碧桂园</span>
@@ -164,9 +169,8 @@
                                 <img src="./用户中心－看房记录_files/240x180c(3).jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">永德小区</span>
-                                <p class="item-title">永德小区 31平米130万 房东忍痛割肉 你还在等什么？</p>
-                                <p class="item-info"><span class="item-price">130万</span><span class="item-info-sub">1室1厅，31平米</span>
-                                </p>
+                                <p class="item-title">永德小区 31平米130万  房东忍痛割肉  你还在等什么？</p>
+                                <p class="item-info"><span class="item-price">130万</span><span class="item-info-sub">1室1厅，31平米</span></p>
                             </a>
                         </li>
                     </ul>
@@ -229,28 +233,16 @@
 </div>
 </body>
 </html>
-
-<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
-<script type="text/javascript" src="js/bbv10.js"></script>
-
-<script type="text/javascript" src="js/jquery-underscore.min.js"></script>
-<script type="text/javascript" src="js/Member_Web_User_Message.js"></script>
-
 <script type="text/javascript">
-
-    function checkLogout() {
-        $.post(
-            'portalLogout',
-            function (data) {
-                if (data == "success") {
-                    location.href = "/ajhouse";
-                }
-            }
-        );
-    }
 
 
     $(function () {
+        var tal =$("#userTel").val();
+        if((tal)==null || tal==""){
+            alert("亲，请先登入哟");
+            location.href="/ajhouse";
+        }
+
         var time_1 = new Date();
         var hour = time_1.getHours();
 
@@ -280,5 +272,14 @@
         }
     })
 
-
+    function checkLogout() {
+        $.post(
+            'portalLogout',
+            function (data) {
+                if (data == "success") {
+                    location.href = "/ajhouse";
+                }
+            }
+        );
+    }
 </script>
