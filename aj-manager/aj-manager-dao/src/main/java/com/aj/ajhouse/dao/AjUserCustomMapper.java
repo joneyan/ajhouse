@@ -11,4 +11,5 @@ public interface AjUserCustomMapper {
 
     List<AjUser> listUsersByPage(Map<String,Object> map);
 
+    AjUser getUser(String tel);
 }

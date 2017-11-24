@@ -37,5 +37,8 @@
         LIMIT #{page.offset},#{page.rows}
     </select>
 
+    <select id="getUser" resultType="com.aj.ajhouse.pojo.po.AjUser" parameterType="java.lang.String">
+        SELECT * FROM aj_user WHERE tel=#{tel}
+    </select>
 
 </mapper>

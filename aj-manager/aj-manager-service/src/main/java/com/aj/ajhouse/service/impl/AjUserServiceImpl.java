@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +74,33 @@ public class AjUserServiceImpl implements AjUserService {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
+        return i;
+    }
+
+    @Override
+    public AjUser findByTel(String tel) {
+
+        AjUser ajUser=ajUserCustomMapper.getUser(tel);
+
+        return ajUser;
+    }
+
+    @Override
+    public int addUser(String tel,String password) {
+        AjUser ajUser = new AjUser();
+
+        Date date = new Date();
+
+        ajUser.setLastloginTime(date);
+        ajUser.setAccountnum(tel);
+        ajUser.setPassword(password);
+        ajUser.setTel(tel);
+        ajUser.setCreateTime(date);
+        ajUser.setRole(1);
+        ajUser.setStatus(0);
+
+
+        int i = ajUserMapper.insertSelective(ajUser);
         return i;
     }
 }

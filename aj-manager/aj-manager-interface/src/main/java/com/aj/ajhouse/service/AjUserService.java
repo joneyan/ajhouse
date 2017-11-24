@@ -12,4 +12,7 @@ public interface AjUserService {
     AjUser findById(int id);
     int updateUser(AjUser ajUser);
 
+    AjUser findByTel(String tel);
+
+    int addUser(String tel,String password);
 }
