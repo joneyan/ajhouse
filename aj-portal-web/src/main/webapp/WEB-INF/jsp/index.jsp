@@ -152,11 +152,10 @@
 									</c:if>
 									<c:if test="${sessionScope.ajUser!=null}">
 										<c:if test="${sessionScope.ajUser.nickname==null}">
-											<a href="#" class="btn-register">${sessionScope.ajUser.tel}</a>
-											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >退出</a>
+											<a href="toUserCenter" class="btn-register">${sessionScope.ajUser.tel}</a>
 										</c:if>
 										<c:if test="${sessionScope.ajUser.nickname!=null}">
-											<a href="#" class="btn-register">${sessionScope.ajUser.nickname}</a>
+											<a href="toUserCenter" class="btn-register">${sessionScope.ajUser.nickname}</a>
 											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >退出</a>
 										</c:if>
 									</c:if>

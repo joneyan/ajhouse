@@ -142,4 +142,24 @@ public class AjUser {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+    @Override
+    public String toString() {
+        return "AjUser{" +
+                "id=" + id +
+                ", photo='" + photo + '\'' +
+                ", accountnum='" + accountnum + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", lastloginTime=" + lastloginTime +
+                ", status=" + status +
+                ", introduce='" + introduce + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", opratorId=" + opratorId +
+                ", role=" + role +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

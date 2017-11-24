@@ -11,14 +11,14 @@ public interface AjCityCustomMapper {
      * @param map
      * @return
      */
-    int countCity(Map<String,Object> map);
+    int countCity(Map<String, Object> map);
 
     /**
      * 查询指定页码显示记录集合
      * @param map
      * @return
      */
-    List<AjCityCustom> listCityByPage(Map<String,Object> map);
+    List<AjCityCustom> listCityByPage(Map<String, Object> map);
 
     /**
      * 查询所有

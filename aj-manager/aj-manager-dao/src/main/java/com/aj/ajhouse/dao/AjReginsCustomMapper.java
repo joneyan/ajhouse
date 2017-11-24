@@ -11,14 +11,14 @@ public interface AjReginsCustomMapper {
      * @param map
      * @return
      */
-    int countRegins(Map<String,Object> map);
+    int countRegins(Map<String, Object> map);
 
     /**
      * 查询指定页码显示记录集合
      * @param map
      * @return
      */
-    List<AjReginsCustom> listReginsByPage(Map<String,Object> map);
+    List<AjReginsCustom> listReginsByPage(Map<String, Object> map);
 
     void updateByCityIds(List ids);
 }

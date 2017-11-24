@@ -23,6 +23,10 @@ public class AjHouse {
 
     private Integer estateId;
 
+    private String address;
+
+    private String image;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +105,21 @@ public class AjHouse {
 
     public void setEstateId(Integer estateId) {
         this.estateId = estateId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
     }
 }

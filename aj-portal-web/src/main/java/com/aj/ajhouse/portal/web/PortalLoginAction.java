@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Controller
 public class PortalLoginAction {
@@ -60,6 +61,7 @@ public class PortalLoginAction {
             System.out.println("调用service存入数据库");
             AjUser ajUser = null;
             ajUser = ajUserService.findByTel(tel);
+
             if (ajUser!=null) {//用户已经存在,直接登录
                 System.out.println("用户已经存在,直接登录");
             } else {//用户不存在,需要添加,再登录
@@ -72,9 +74,14 @@ public class PortalLoginAction {
                     System.out.println("添加失败!");
                 }
             }
+            //System.out.println(ajUser);
+            Date lastloginTime = ajUser.getLastloginTime();
+            ajUser.setLastloginTime(new Date());
+            ajUserService.updateUser(ajUser);
             //把用户存到session中
             HttpSession session = request.getSession();
             session.setAttribute("ajUser",ajUser);
+            session.setAttribute("lastloginTime",lastloginTime);
 
             return "0";
         }else{

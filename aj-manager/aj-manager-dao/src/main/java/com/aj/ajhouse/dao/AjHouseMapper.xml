@@ -12,6 +12,8 @@
     <result column="house_cat_id" property="houseCatId" jdbcType="INTEGER" />
     <result column="subway_id" property="subwayId" jdbcType="INTEGER" />
     <result column="estate_id" property="estateId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, title, sell_point, price, status, updatetime, createtime, house_cat_id, subway_id, 
-    estate_id
+    estate_id, address, image
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aj.ajhouse.pojo.po.AjHouseExample" >
     select
@@ -109,11 +111,13 @@
     insert into aj_house (id, title, sell_point, 
       price, status, updatetime, 
       createtime, house_cat_id, subway_id, 
-      estate_id)
+      estate_id, address, image
+      )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
       #{price,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{createtime,jdbcType=TIMESTAMP}, #{houseCatId,jdbcType=INTEGER}, #{subwayId,jdbcType=INTEGER}, 
-      #{estateId,jdbcType=INTEGER})
+      #{estateId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.aj.ajhouse.pojo.po.AjHouse" >
     insert into aj_house
@@ -148,6 +152,12 @@
       <if test="estateId != null" >
         estate_id,
       </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -179,6 +189,12 @@
       </if>
       <if test="estateId != null" >
         #{estateId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +237,12 @@
       <if test="record.estateId != null" >
         estate_id = #{record.estateId,jdbcType=INTEGER},
       </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +259,9 @@
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       house_cat_id = #{record.houseCatId,jdbcType=INTEGER},
       subway_id = #{record.subwayId,jdbcType=INTEGER},
-      estate_id = #{record.estateId,jdbcType=INTEGER}
+      estate_id = #{record.estateId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +296,12 @@
       <if test="estateId != null" >
         estate_id = #{estateId,jdbcType=INTEGER},
       </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -285,7 +315,9 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       house_cat_id = #{houseCatId,jdbcType=INTEGER},
       subway_id = #{subwayId,jdbcType=INTEGER},
-      estate_id = #{estateId,jdbcType=INTEGER}
+      estate_id = #{estateId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

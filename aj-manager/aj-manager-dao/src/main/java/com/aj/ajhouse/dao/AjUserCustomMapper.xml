@@ -38,7 +38,9 @@
     </select>
 
     <select id="getUser" resultType="com.aj.ajhouse.pojo.po.AjUser" parameterType="java.lang.String">
-        SELECT * FROM aj_user WHERE tel=#{tel}
+        SELECT  <include refid="Base_Column_List"/>
+
+        FROM aj_user WHERE tel=#{tel}
     </select>
 
 </mapper>
