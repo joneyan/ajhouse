@@ -37,7 +37,7 @@
     //文档列表数据表格
     $('#docdg').datagrid({
         multiSort: true,
-        toolbar:'doctoolbar',
+        toolbar:'#doctoolbar',
         url:'docs',
         striped:true,
         pagination:true,
@@ -56,7 +56,7 @@
             }},
             {field:'docContent',title:'文章内容',width: 100},
             {field:'creatTime',title:'创建日期',width: 100},
-            {field:'updateTime',title:'修改日期',width: 100},
+            {field:'updateTime',title:'修改日期',width: 100}
         ]]
     });
 </script>

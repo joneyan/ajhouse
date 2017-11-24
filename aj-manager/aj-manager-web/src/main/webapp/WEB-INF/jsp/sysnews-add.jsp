@@ -51,7 +51,13 @@
     }
     //初始化之前实例删除原有的容器
     UE.delEditor('newsContent');
-    var ue=UE.getEditor('newsContent');
+    var ue=UE.getEditor('newsContent',{
+        initialFrameWidth: '100%',
+            initialFrameHeight: '300',
+            serverUrl:'file/upload'
+    });
+
+
     $('#menuLeafid').combotree({
         url:'docsmenu?parentid=0',
         required:true,

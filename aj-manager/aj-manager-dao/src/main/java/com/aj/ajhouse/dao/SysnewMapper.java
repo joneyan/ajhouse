@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface SysnewMapper {
-  //后台功能模块
-
     int countSysnew();
+
 
     List<AjSysnews> listSysnewByPage(Map<String, Object> map);
 
@@ -19,7 +18,4 @@ public interface SysnewMapper {
     int pushNoSysnew(Integer integer);
 
     int delSysnew(Integer integer);
-// 前台 功能 模块
-
-    int countSysnew(Map<String, Object> map);
 }

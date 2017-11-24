@@ -6,16 +6,6 @@ public class AjDocsMenuView extends AjDocsMenu {
 
     private String parentName;
 
-    private String operatorName;
-
-    public String getOperatorName() {
-        return operatorName;
-    }
-
-    public void setOperatorName(String operatorName) {
-        this.operatorName = operatorName;
-    }
-
     public String getParentName() {
         return parentName;
     }

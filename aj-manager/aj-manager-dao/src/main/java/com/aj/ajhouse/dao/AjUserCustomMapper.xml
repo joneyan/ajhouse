@@ -3,7 +3,7 @@
 <mapper namespace="com.aj.ajhouse.dao.AjUserCustomMapper" >
     <sql id="Base_Column_List" >
         id, photo, accountnum, nickname, tel, email, create_time AS createTime, lastlogin_time AS lastloginTime, status,
-        introduce, idcard, oprator_id AS opratorId, role
+        introduce, idcard, oprator_id AS opratorId, role,password
     </sql>
     <sql id="Where_Clause" >
         <where>

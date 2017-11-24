@@ -73,8 +73,8 @@
                 if (data>0){
                     $.messager.alert('温馨提示', '恭喜！修改信息成功！');
                     ajhouse.closeTabs('修改信息');
-                    ajhouse.closeTabs('查询管理员');
-                    ajhouse.addTabs('查询管理员', 'admin-list');
+                    ajhouse.closeTabs('查询管理');
+                    ajhouse.addTabs('查询管理', 'admin-list');
                 }
             }
         });

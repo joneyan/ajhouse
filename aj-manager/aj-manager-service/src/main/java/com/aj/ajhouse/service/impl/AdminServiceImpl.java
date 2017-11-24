@@ -81,6 +81,7 @@ public class AdminServiceImpl implements AdminService{
     public int update(AjAdmin ajAdmin) {
         int i= 0;
         try{
+
             i = ajAdminCustomMapper.updateAdmin(ajAdmin);
         }catch (Exception e) {
             logger.error(e.getMessage(), e);

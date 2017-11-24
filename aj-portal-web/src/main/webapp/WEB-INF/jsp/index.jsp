@@ -70,11 +70,13 @@
 			<div class="modal-body">
 				<form id="myForm2">
 
-					<input type="text" class="form-control" style="margin-left: 5%; margin-top: 5%; width: 300px;  height:50px " placeholder="请输入手机号">
+					<input type="text" id="tel2" class="form-control" style="margin-left: 5%; margin-top: 5%; width: 300px;  height:50px " placeholder="请输入手机号">
 
-					<input type="text" class="form-control" style="margin-left: 5%;  margin-top: 5%; width: 300px;  height:50px " placeholder="请输入验证码">
+					<input type="text" id="code2" class="form-control" style="margin-left: 5%;  display:inline-block; margin-top: 5%; width: 180px;  height:50px " placeholder="请输入验证码">
 
-					<input type="text" class="form-control" style="margin-left: 5%;  margin-top: 5%; width: 300px;  height:50px " placeholder="请输入短信验证码">
+					<input type="password" id="password2" class="form-control" style="margin-left: 5%;  margin-top: 5%; width: 300px;  height:50px " placeholder="请输入密码(最少8位,数字+字母)">
+
+					<p id="span2" style="margin-left: 5%;  margin-top: 5%;"></p>
 
 					<button class="btn btn-primary btn-lg" style="margin-left: 20%;  margin-top: 5%; width: 200px" data-toggle="modal" data-target="#myModal">
 						登录
@@ -153,10 +155,11 @@
 									<c:if test="${sessionScope.ajUser!=null}">
 										<c:if test="${sessionScope.ajUser.nickname==null}">
 											<a href="toUserCenter" class="btn-register">${sessionScope.ajUser.tel}</a>
+											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >注销</a>
 										</c:if>
 										<c:if test="${sessionScope.ajUser.nickname!=null}">
 											<a href="toUserCenter" class="btn-register">${sessionScope.ajUser.nickname}</a>
-											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >退出</a>
+											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >注销</a>
 										</c:if>
 									</c:if>
 								</span>
@@ -444,7 +447,7 @@
                 "getMessageCode/"+tel,
 				function (data) {
 					if(data=="success"){
-					    alert("短信发送成功");
+                        $("#span1").html("短信发送成功").css("color","green");
 					}
                 }
             )
@@ -490,7 +493,7 @@
                     }else if(data=="2"){
                         $("#span1").html("短信验证码输入错误!").css("color","red");
                     }else if(data=="0"){
-                        alert("登录成功");
+                        //alert("登录成功");
                         location.reload();
                     }
                 },
@@ -500,7 +503,6 @@
             });
         }
     });
-
 
 
 
@@ -570,24 +572,69 @@
                 }
             });
 		}
+
+
+    })
+
+	//账号密码登录校验
+    $("#myForm2").submit(function(a){
+        var tel = $("#tel2").val();
+        var code = $("#code2").val();
+        var pwd = $("#password2").val();
+        var flag = false;
+        if(!pattern.test(tel)){
+            $("#span2").html("请输入有效的手机号!").css("color","red");
+            $("#tel2").focus();
+        }else if(code==""||code.length!=4){
+            $("#span2").html("请输入有效的验证码!").css("color","red");
+            $("#code2").focus();
+        }else if(!pwd_reg.test(pwd)){
+            $("#span2").html("请输入正确格式密码").css("color","red");
+            $("#password2").focus();
+        }else{
+            flag=true;
+            $("#span2").html("");
+        }
+        a.preventDefault();
+        if(flag){
+            $.ajax({
+                url:"portalLogin1",
+                data:{"tel":tel,"code":code,"password":pwd},
+                datatype:"json",
+                type:"post",
+                cache:false,
+                success:function(data){
+                    if(data=="1"){
+                        $("#span2").html("该用户未注册,请注册后再登录!").css("color","red");
+                    }else if(data=="2"){
+                        $("#span2").html("密码输入错误!").css("color","red");
+                    }else if(data=="0"){
+                        //alert("登录成功");
+                        location.reload();
+                    }
+                },
+                error:function(){
+                    alert("服务器内部出现未知错误");
+                }
+            });
+        }
     });
 
+	//用户注销
     function checkLogout() {
         $.post(
             'portalLogout',
-			function (data) {
-				if(data=="success"){
-				    location.reload();
-				}
+            function (data) {
+                if(data=="success"){
+                    location.reload();
+                }
             }
         );
     }
 
+
+
 </script>
-
-
-
-
 
 
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.AjHouseCustomMapper" >
+
+  <sql id="Base_Column_List" >
+    h.id as id, h.title as title, h.sell_point as sellPoint, h.price as price, h.status as status, h.updatetime as updatetime, h.createtime as createtime, h.house_cat_id as houseCatId, h.subway_id as subwayId,
+   h.estate_id as estateId, h.address as address, h.image as address
+  </sql>
+  <select id="countHouses" resultType="_int">
+    select count(1)
+    from aj_house h
+    WHERE h.status=1;
+  </select>
+
+  <select id="listHouseByPage" resultType="com.aj.ajhouse.pojo.po.AjHouse">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    from aj_house h
+    WHERE h.status=1
+    LIMIT  #{page.offset},#{page.rows}
+  </select>
+</mapper>

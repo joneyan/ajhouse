@@ -61,7 +61,6 @@ public class PortalLoginAction {
             System.out.println("调用service存入数据库");
             AjUser ajUser = null;
             ajUser = ajUserService.findByTel(tel);
-
             if (ajUser!=null) {//用户已经存在,直接登录
                 System.out.println("用户已经存在,直接登录");
             } else {//用户不存在,需要添加,再登录
@@ -75,13 +74,18 @@ public class PortalLoginAction {
                 }
             }
             //System.out.println(ajUser);
+            //获取最后登录的时间,并且把时间存到session中
             Date lastloginTime = ajUser.getLastloginTime();
             ajUser.setLastloginTime(new Date());
+
+            //把更新好的最后时间的对象存到数据库e中
             ajUserService.updateUser(ajUser);
+
             //把用户存到session中
             HttpSession session = request.getSession();
             session.setAttribute("ajUser",ajUser);
             session.setAttribute("lastloginTime",lastloginTime);
+
 
             return "0";
         }else{
@@ -90,7 +94,33 @@ public class PortalLoginAction {
     }
 
 
-    //用户退出
+    //账号密码登录
+    @ResponseBody
+    @RequestMapping("/portalLogin1")
+    public String login1(String tel,String code,String password,HttpServletRequest request) {
+
+        AjUser ajUser = null;
+        ajUser = ajUserService.findByTel(tel);
+        if(ajUser==null){
+            return "1";
+        }else if(!password.equals(ajUser.getPassword())){
+            return "2";
+        }
+        //获取最后登录的时间,并且把时间存到session中
+        Date lastloginTime = ajUser.getLastloginTime();
+
+        //把更新好的最后时间的对象存到数据库中
+        ajUser.setLastloginTime(new Date());
+        ajUserService.updateUser(ajUser);
+
+        //把用户存到session中
+        HttpSession session = request.getSession();
+        session.setAttribute("ajUser",ajUser);
+        session.setAttribute("lastloginTime",lastloginTime);
+
+        return "0";
+    }
+    //用户注销
     @ResponseBody
     @RequestMapping("/portalLogout")
     public String logout(HttpServletRequest request){
@@ -98,7 +128,6 @@ public class PortalLoginAction {
         session.removeAttribute("ajUser");
         return "success";
     }
-
 
 
 }

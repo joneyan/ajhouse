@@ -44,9 +44,9 @@
         </div>
         <div title="房源管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
+                <li data-options="attributes:{'href':'house-add'}">发布房源</li>
                 <li data-options="attributes:{'href':'house-list'}">查看房源</li>
-                <li data-options="attributes:{'href':'shop-list'}">查看写字楼商铺</li>
-                <li data-options="attributes:{'href':'housetype-list'}">房屋类型管理</li>
+                <li data-options="attributes:{'href':'house-param-add'}">房屋规格参数管理</li>
             </ul>
         </div>
         <div title="新闻管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">

@@ -23,7 +23,7 @@
            <!--注意：要加上type="button",默认行为是submit-->
            <button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>--%>
         <%--<a onclick="searchForm()" class="easyui-linkbutton">搜索</a>--%>
-            <input class="easyui-textbox" type="text" id="searchSysnew" name="searchSysnew">
+            新闻题目搜索：<input class="easyui-textbox" type="text" id="searchSysnew" name="searchSysnew">
             <a onclick="searchSysnew()" class="easyui-linkbutton">搜索</a>
     </div>
     <div>

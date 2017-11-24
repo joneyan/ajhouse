@@ -1,18 +1,10 @@
 package com.aj.ajhouse.portal.web;
 
-import com.aj.ajhouse.common.dto.Order;
-import com.aj.ajhouse.common.dto.Page;
-import com.aj.ajhouse.pojo.po.AjSysnews;
-import com.aj.ajhouse.service.UserCenterService;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,8 +22,8 @@ import java.util.Map;
 @Scope("prototype")
 public class UserCenterAction {
 
-    @Autowired
-    UserCenterService userCenterService;
+    /*@Autowired
+    private UserCenterService userCenterService;*/
     /**
      *用户中心跳转
      * @return
@@ -45,14 +37,14 @@ public class UserCenterAction {
      * 系统消息Action
      * @return
      */
-    @RequestMapping("/messages/{id}")
+   /* @RequestMapping("/messages/{id}")
     public String getMessages(Page page, Order order){
         System.out.println("messages");
         List<AjSysnews> list =null;
         list =userCenterService.getMessages( page,  order);
         System.out.println(list);
         return "m";
-    }
+    }*/
 
     /**
      *
