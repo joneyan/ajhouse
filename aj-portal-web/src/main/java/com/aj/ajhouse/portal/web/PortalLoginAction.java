@@ -83,6 +83,14 @@ public class PortalLoginAction {
     }
 
 
+    //用户退出
+    @ResponseBody
+    @RequestMapping("/portalLogout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("ajUser");
+        return "success";
+    }
 
 
 

@@ -153,9 +153,11 @@
 									<c:if test="${sessionScope.ajUser!=null}">
 										<c:if test="${sessionScope.ajUser.nickname==null}">
 											<a href="#" class="btn-register">${sessionScope.ajUser.tel}</a>
+											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >退出</a>
 										</c:if>
 										<c:if test="${sessionScope.ajUser.nickname!=null}">
 											<a href="#" class="btn-register">${sessionScope.ajUser.nickname}</a>
+											<a style="cursor: pointer" class="btn-register" onclick="checkLogout()" >退出</a>
 										</c:if>
 									</c:if>
 								</span>
@@ -569,16 +571,24 @@
                 }
             });
 		}
+    });
 
-
-    })
-
-
-
-
-
+    function checkLogout() {
+        $.post(
+            'portalLogout',
+			function (data) {
+				if(data=="success"){
+				    location.reload();
+				}
+            }
+        );
+    }
 
 </script>
+
+
+
+
 
 
 
