@@ -12,10 +12,11 @@
     <sql id="where_Clause">
         <where>
         <if test="questionQuery!=null and questionQuery.quesTitle!=null and questionQuery.quesTitle!=''">
-             qu.ques_title like '%${questionQuery.quesTitle}%'
+           and  qu.ques_title like '%${questionQuery.quesTitle}%'
         </if>
-           and qu.status!=2
+            and qu.status!=2
         </where>
+
     </sql>
 
     <select id="countQuestion" resultType="_int">
