@@ -40,4 +40,6 @@ public class AjSysnews {
     public void setNewsContent(String newsContent) {
         this.newsContent = newsContent == null ? null : newsContent.trim();
     }
+
+
 }
