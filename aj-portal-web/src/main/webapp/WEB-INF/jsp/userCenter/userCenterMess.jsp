@@ -1,13 +1,9 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
-<script type="text/javascript" src="js/jquery-underscore.min.js"></script>
-<script type="text/javascript" src="js/Member_Web_User_Message.js"></script>
-
 <html xmlns="http://www.w3.org/1999/xhtml" lang="gb2312">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,7 +23,7 @@
         </div>
         <a href="" class="quit">
             <i class="iconfont quitIcon"></i>
-            <span onclick="logOut()">注销</span>
+            <span>注销</span>
         </a>
     </div>
 </div>
@@ -53,7 +49,7 @@
                     <li>
                         <i class="iconfont phoneIcon"></i>
                         <div class="dialog">
-                            <div class="text">您已通过<span >${sessionScope.ajUser.tel}</span>认证</div>
+                            <div class="text">您已通过<span id="userTel">${sessionScope.ajUser.tel}</span>认证</div>
                             <div class="corner"></div>
                             <div class="border"></div>
                             <div class="masker"></div>
@@ -65,7 +61,7 @@
             <div class="info-sub clearfix">
                 <ul>
                     <li class="user-account">
-                        账户名：<span id="userTel" >${sessionScope.ajUser.tel}</span>
+                        账户名：<span>${sessionScope.ajUser.tel}</span>
                     </li>
                     <i class="split-icon"></i>
                     <li class="user-type">
@@ -79,7 +75,7 @@
                 </ul>
             </div>
         </div>
-        <a class="info-modify" href="userX/${sessionScope.ajUser.tel}"<%--id=11--%>>
+        <a class="info-modify"  href="/ajhouse/userX/${sessionScope.ajUser.tel}"<%--id=11--%>>
             <button>修改资料&gt;</button>
         </a>
     </div>
@@ -90,22 +86,22 @@
         <div class="side-menu">
             <ul class="menu-list">
                 <li>
-                    <a href="messages/${sessionScope.ajUser.tel}" class=""><i
+                    <a href="/ajhouse/messages/${sessionScope.ajUser.tel}"<%--id=11--%> class="cur"><i
                             class="iconfont"></i>系统消息</a>
                 </li>
 
                 <li>
-                    <a href="questMessages/${sessionScope.ajUser.tel}"class=""><i class="iconfont"></i>我的提问</a>
+                    <a href="/ajhouse/questMessages/${sessionScope.ajUser.tel}"<%--id=11--%> class=""><i class="iconfont"></i>我的提问</a>
                 </li>
 
                 <!-- <li>
                     <a href="http://user.anjuke.com/member/loan/55171663/"><i class="iconfont">&#xE141;</i>贷款</a>
                 </li>
                 <li> -->
-                    <a href="questionAns/${sessionScope.ajUser.tel}" <%--target="_blank"--%>><i class="iconfont"></i>我的回答</a>
+                <a href="/ajhouse/questionAns/${sessionScope.ajUser.tel}"<%--id=11--%> ><i class="iconfont"></i>我的回答</a>
 
                 <li>
-                    <a href="userX/${sessionScope.ajUser.tel}" class=""><i class="iconfont"></i>个人资料</a>
+                    <a href="/ajhouse/userX/${sessionScope.ajUser.tel}"<%--id=11--%> class=""><i class="iconfont"></i>个人资料</a>
                 </li>
 
             </ul>
@@ -117,25 +113,72 @@
         <div class="right-content">
             <div class="right-cont">
                 <ul class="tab-list clearfix">
-                    <li><a href="#" class="cur">欢迎</a></li>
+                    <li><a href="#" class="cur">系统消息</a></li>
                 </ul>
 
                 <div class="no-msg">
 	<span class="no-msg-content">
-		<span class="no-msg-img"></span>
-		<br>
-		<span class="no-msg-text">安居乐欢迎你</span>
 
-	</span><br>
-
-                    <form action="${pageContext.request.contextPath }/cephalicPhase" method="post" enctype="multipart/form-data">
-                        头像修改： <input type="file" name="images[]"/><br/>
-                        <input type="hidden" name="tel" value="${sessionScope.ajUser.tel}" />
-                        <input type="submit" value="上传" />
-                    </form>
+		<c:if test="${sysnew}==null || ${sysnew}==''">
+            系统消息为空!
+        </c:if>
+        <c:if test="true">
 
 
+            <table border="1" align="center"   bgcolor=""  width="800px" height="100%" >
+ <tr height="50px">
+    <td  ><div class="STYLE1" align="center">新闻题目</div></td>
+    <td ><div class="STYLE1" align="center">新闻内容</div></td>
+  </tr>
+				<c:forEach items="${sysnew.rows}" var="s">
+				<tr height="50px">
+					<td>${s.title}</td>
+					<td>${s.newsContent}</td>
+				</tr>
+                </c:forEach>
 
+			 	<%--<tr >
+					<td colspan="5" align="center">
+
+					<c:if test="${pb.totalPage>1 }">&lt;%&ndash;总页数大于1 &ndash;%&gt;
+
+
+                        &lt;%&ndash;第一页 currentPage==1 &ndash;%&gt;
+                        <c:if test="${pb.currentPage==1 }">
+
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=${pb.currentPage+1 }">下一页&gt;&gt;</a>
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=${pb.totalPage }">尾页&gt;&gt;&gt;</a>
+
+                        </c:if>
+
+                        &lt;%&ndash;最后一页 只有上一页和首页显示&ndash;%&gt;
+
+                        <c:if test="${pb.currentPage==pb.totalPage }">
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=1">首页&lt;&lt;&lt;</a>
+
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=${pb.currentPage-1 }">上一页&lt;&lt;</a>
+
+                        </c:if>
+
+
+                        中间页&ndash;%&gt;
+                        <c:if test="${pb.currentPage>1 && pb.currentPage<pb.totalPage }">
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=1&cid=${cid}">首页&lt;&lt;&lt;</a>
+
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=${pb.currentPage-1 }">上一页&lt;&lt;</a>
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=${pb.currentPage+1 }">下一页&gt;&gt;</a>
+                            <a href="${pageContext.request.contextPath}/invitation/findAllByPage.action?currentPage=${pb.totalPage }">尾页&gt;&gt;&gt;</a>
+
+                        </c:if>
+                    </c:if>
+					</td>
+
+				</tr>--%>
+
+</table>
+
+        </c:if>
+	</span>
 
                 </div>
             </div>
@@ -145,7 +188,7 @@
                     <p class="rh-title">您可能感兴趣的房源</p>
                     <ul class="rh-items">
                         <li class="rh-item">
-                            <a href="#" class="rh-item-content" >
+                            <a href="#" class="rh-item-content">
                                 <img src="./用户中心－看房记录_files/240x180c.jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">碧桂园</span>
@@ -179,8 +222,9 @@
                                 <img src="./用户中心－看房记录_files/240x180c(3).jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">永德小区</span>
-                                <p class="item-title">永德小区 31平米130万  房东忍痛割肉  你还在等什么？</p>
-                                <p class="item-info"><span class="item-price">130万</span><span class="item-info-sub">1室1厅，31平米</span></p>
+                                <p class="item-title">永德小区 31平米130万 房东忍痛割肉 你还在等什么？</p>
+                                <p class="item-info"><span class="item-price">130万</span><span class="item-info-sub">1室1厅，31平米</span>
+                                </p>
                             </a>
                         </li>
                     </ul>
@@ -224,7 +268,6 @@
         <a onclick="checkLogout()"><button class="sure">确定
         </button></a><button class="cancel">取消</button>
     </div>
-
     <!-- 修改昵称 -->
     <div class="modify-name">
         <p class="error-tip name-error">只能包含中文、英文字母、数字，不包含符号</p>
@@ -242,21 +285,22 @@
 </body>
 </html>
 
-<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
-<script type="text/javascript" src="js/bbv10.js"></script>
-<script type="text/javascript" src="js/jquery-underscore.min.js"></script>
-<script type="text/javascript" src="js/Member_Web_User_Message.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="/ajhouse/js/jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="/ajhouse/js/bbv10.js"></script>
 
+<script type="text/javascript" src="/ajhouse/js/jquery-underscore.min.js"></script>
+<script type="text/javascript" src="/ajhouse/js/Member_Web_User_Message.js"></script>
+<script type="text/javascript">
 
     $(function () {
         var tal=${sessionScope.ajUser.tel}+"";
-        if(tal==null || tal==""){
+        if((tal)==null || tal==""){
             alert("亲，请先登入哟");
             location.href="/ajhouse";
         }
         var time_1 = new Date();
         var hour = time_1.getHours();
+
         if (6 > parseInt(hour)) {
             $("#time").html("凌晨")
         }
@@ -283,9 +327,10 @@
         }
     })
 
+
     function checkLogout() {
         $.post(
-            'portalLogout',
+            '${pageContext.request.contextPath}/portalLogout',
             function (data) {
                 if (data == "success") {
                     location.href = "/ajhouse";
@@ -293,5 +338,4 @@
             }
         );
     }
-    
 </script>
