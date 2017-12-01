@@ -9,6 +9,25 @@
 	<link rel="stylesheet" href="css/lianjiaim.css">
 	<link rel="stylesheet" href="css/main.css">
 
+	<style type="text/css">
+		.code
+		{
+			background-image:url(images/code.png);
+			font-family:Arial;
+			font-style:italic;
+			color:Red;
+			border:0;
+			padding:2px 3px;
+			letter-spacing:3px;
+			font-weight:bolder;
+			font-size:20px;
+		}
+		.unchanged
+		{
+			border:0;
+		}
+	</style>
+
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -34,6 +53,8 @@
 
 					<input type="text" id="code1" class="form-control" style="margin-left: 5%;  display:inline-block; margin-top: 5%; width: 180px;  height:50px " placeholder="请输入验证码">
 
+					<input type="text" class="input" onclick="createCode()" readonly="readonly" name="checkCode" class="unchanged" style="width: 80px;margin-left: 35px"/>
+
 					<input type="text" id="messageCode1" class="form-control" style="margin-left: 5%; display:inline-block; margin-top: 5%; width: 180px;  height:50px " placeholder="请输入短信验证码">
 
 					<a style="float: right;margin: 10% 40px 0 0;cursor: pointer" class="getMessageCode">获取验证码</a>
@@ -43,7 +64,7 @@
 					<input type="submit" class="btn btn-primary btn-lg" style="margin-left: 20%;  margin-top: 5%; width: 200px" value="登录">
 
 				</form>
-				<a href=""  style="margin-left: 5%;" data-toggle="modal" data-dismiss="modal" data-target="#myLogin2">账号密码登录</a>
+				<a href="" onclick="createCode()" style="margin-left: 5%;" data-toggle="modal" data-dismiss="modal" data-target="#myLogin2">账号密码登录</a>
 
 			</div>
 
@@ -74,6 +95,8 @@
 
 					<input type="text" id="code2" class="form-control" style="margin-left: 5%;  display:inline-block; margin-top: 5%; width: 180px;  height:50px " placeholder="请输入验证码">
 
+					<input type="text" class="input" onclick="createCode()" readonly="readonly" name="checkCode" class="unchanged" style="width: 80px;margin-left: 35px"/>
+
 					<input type="password" id="password2" class="form-control" style="margin-left: 5%;  margin-top: 5%; width: 300px;  height:50px " placeholder="请输入密码(最少8位,数字+字母)">
 
 					<p id="span2" style="margin-left: 5%;  margin-top: 5%;"></p>
@@ -82,7 +105,7 @@
 						登录
 					</button>
 				</form>
-				<a href=""  style="margin-left: 5%;" data-toggle="modal" data-dismiss="modal" data-target="#myLogin1">手机快捷登录</a>
+				<a href="" onclick="createCode()"  style="margin-left: 5%;" data-toggle="modal" data-dismiss="modal" data-target="#myLogin1">手机快捷登录</a>
 			</div>
 
 
@@ -110,6 +133,8 @@
 
 					<input type="text" id="code3" class="form-control" style="margin-left: 5%;  display:inline-block; margin-top: 5%; width: 180px;  height:50px " placeholder="请输入验证码">
 
+					<input type="text" class="input" onclick="createCode()" readonly="readonly" name="checkCode" class="unchanged" style="width: 80px;margin-left: 35px"/>
+
 					<input type="text" id="messageCode3" class="form-control" style="margin-left: 5%; display:inline-block; margin-top: 5%; width: 180px;  height:50px " placeholder="请输入短信验证码">
 
 					<div id="ms" style="float: right;margin: 10% 40px 0 0;cursor: pointer">
@@ -124,7 +149,7 @@
 						注册
 					</button>
 				</form>
-				<a href=""  style="margin-left: 5%;" data-toggle="modal" data-dismiss="modal" data-target="#myLogin1">已有账号？点我登录</a>
+				<a href="" onclick="createCode()"  style="margin-left: 5%;" data-toggle="modal" data-dismiss="modal" data-target="#myLogin1">已有账号？点我登录</a>
 			</div>
 
 
@@ -147,9 +172,9 @@
 							<div class="typeShowUser "><i></i>
 								<span class="welcome">
 									<c:if test="${sessionScope.ajUser==null}">
-										<a style="cursor: pointer" class="btn-login bounceIn actLoginBtn" data-toggle="modal" data-target="#myLogin1">
+										<a style="cursor: pointer" onclick="createCode()" class="btn-login bounceIn actLoginBtn" data-toggle="modal" data-target="#myLogin1">
 										<span class="reg">登录</span></a>
-										<a style="cursor: pointer" class="btn-register" data-toggle="modal" data-target="#myRegester">
+										<a style="cursor: pointer" onclick="createCode()" class="btn-register" data-toggle="modal" data-target="#myRegester">
 										<span class="log">立即注册</span></a>
 									</c:if>
 									<c:if test="${sessionScope.ajUser!=null}">
@@ -192,10 +217,10 @@
 								<div class="nav-list">
 									<dd><i></i>
 										<dl>
-											<a href="#">问答</a>
+											<a href="http://localhost:8081/ajhouse/wenda/rs/pg1/">问答</a>
 										</dl>
 										<dl>
-											<a href="#">百科</a>
+											<a href="http://localhost:8081/ajhouse/doc-help">帮助中心</a>
 										</dl>
 									</dd>
 								</div>
@@ -318,7 +343,7 @@
 	                <ul>
                                             <li>
                             <a href="#">
-                                <img src="https://image1.ljcdn.com/xf-resblock/b55bdafb-5351-45b4-b12e-ee9c338f56e6.jpg.510x300.jpg" alt="正黄金域世家">
+                                <img src="picture/b55bdafb-5351-45b4-b12e-ee9c338f56e6.jpg.510x300.jpg" alt="正黄金域世家">
                                 <div class="bg"></div>
                                                                 <div class="price">
                                     <div>
@@ -336,7 +361,7 @@
                         </li>
                                             <li>
                             <a href="#">
-                                <img src="https://image1.ljcdn.com/xf-resblock/d606757e-eebb-453f-b1bc-5861245afb63.jpg.510x300.jpg" alt="蓝钻天成">
+                                <img src="picture/d606757e-eebb-453f-b1bc-5861245afb63.jpg.510x300.jpg" alt="蓝钻天成">
                                 <div class="bg"></div>
                                                                 <div class="title">
                                     蓝钻天成
@@ -349,7 +374,7 @@
                         </li>
                                             <li>
                             <a href="#">
-                                <img src="https://image1.ljcdn.com/xf-resblock/3776b625-4d82-43c9-baae-fb6728b76e6e.JPG.510x300.jpg" alt="阳光郡">
+                                <img src="picture/3776b625-4d82-43c9-baae-fb6728b76e6e.jpg.510x300.jpg" alt="阳光郡">
                                 <div class="bg"></div>
                                                                 <div class="title">
                                     阳光郡
@@ -437,6 +462,31 @@
 
 <script>
 
+    var code; //在全局 定义验证码
+
+    function createCode()
+    {
+
+        var codeLength = 4;//验证码的长度
+        var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');//所有候选组成验证码的字符，当然也可以用中文的
+
+        code = "";
+        var checkCode = document.getElementsByName("checkCode");
+        for(var i=0;i<codeLength;i++)
+        {
+            var charIndex = Math.floor(Math.random()*62);
+            code +=selectChar[charIndex];
+        }
+        for(var i=0;i<checkCode.length;i++)
+        {
+            checkCode[i].className="code";
+            checkCode[i].value = code;
+        }
+    }
+
+
+
+
     var pattern = /^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/;
     var pwd_reg = /^[0-9a-zA-Z]{8,12}$/;
 	//发送短信之前校验手机号
@@ -475,22 +525,28 @@
         }else if(messageCode==""||messageCode.length!=6){
             $("#span1").html("请输入有效的短信验证码!").css("color","red");
             $("#messageCode1").focus();
-		}else{
+		}else if(code1.toLowerCase() != code.toLowerCase() )
+        {
+            $("#span1").html("验证码输入错误!").css("color","red");
+            createCode();//刷新验证码
+        }else{
             flag=true;
             $("#span1").html("");
 		}
+
+
+
+
         a.preventDefault();
         if(flag){
             $.ajax({
                 url:"portalLogin",
-                data:{"tel":tel,"code":code1,"messageCode":messageCode},
+                data:{"tel":tel,"messageCode":messageCode},
                 datatype:"json",
                 type:"post",
                 cache:false,
                 success:function(data){
                     if(data=="1"){
-                        $("#span1").html("验证码输入错误!").css("color","red");
-                    }else if(data=="2"){
                         $("#span1").html("短信验证码输入错误!").css("color","red");
                     }else if(data=="0"){
                         //alert("登录成功");
@@ -515,7 +571,7 @@
                 "getMessageCode/"+tel,
                 function (data) {
                     if(data=="success"){
-                        alert("短信发送成功");
+                        $("#span3").html("短信发送成功").css("color","green");
                     }
                 }
             )
@@ -530,13 +586,13 @@
     $("#myForm3").submit(function(c){
         var tel = $("#tel3").val();
         var pwd = $("#password3").val();
-        var code = $("#code3").val();
+        var code2 = $("#code3").val();
         var messageCode = $("#messageCode3").val();
         var flag = false;
         if(!pattern.test(tel)){
             $("#span3").html("请输入有效的手机号!").css("color","red");
             $("#tel3").focus();
-        }else if(code==""||code==null||code.length!=4){
+        }else if(code2==""||code2==null||code2.length!=4){
             $("#span3").html("请输入有效验证码").css("color","red");
             $("#code3").focus();
         }else if(messageCode==""||messageCode==null||messageCode.length!=6){
@@ -545,25 +601,30 @@
         }else if(!pwd_reg.test(pwd)){
             $("#span3").html("请输入正确格式密码").css("color","red");
             $("#password3").focus();
+        }else if(code2.toLowerCase() != code.toLowerCase() )
+        {
+            $("#span3").html("验证码输入错误!").css("color","red");
+            createCode();//刷新验证码
         }else {
             flag = true;
             $("#span3").html("");
         }
+
+
         c.preventDefault();
         if(flag){
             $.ajax({
-                url:"portalLogin",
-                data:{"tel":tel,"password":pwd,"code":code,"messageCode":messageCode},
+                url:"portalRegester",
+                data:{"tel":tel,"password":pwd,"messageCode":messageCode},
                 datatype:"json",
                 type:"post",
                 cache:false,
                 success:function(data){
                     if(data=="1"){
-                        $("#span3").html("验证码输入错误!").css("color","red");
-                    }else if(data=="2"){
                         $("#span3").html("短信验证码输入错误!").css("color","red");
-                    }else if(data=="0"){
-                        alert("注册成功,直接登录");
+                    }else if(data=="2"){
+                        $("#span3").html("该号码已经注册过了,请直接登录!").css("color","red");
+					}else if(data=="0"){
                         location.reload();
                     }
                 },
@@ -579,27 +640,34 @@
 	//账号密码登录校验
     $("#myForm2").submit(function(a){
         var tel = $("#tel2").val();
-        var code = $("#code2").val();
+        var code3 = $("#code2").val();
         var pwd = $("#password2").val();
         var flag = false;
         if(!pattern.test(tel)){
             $("#span2").html("请输入有效的手机号!").css("color","red");
             $("#tel2").focus();
-        }else if(code==""||code.length!=4){
+        }else if(code3==""||code3.length!=4){
             $("#span2").html("请输入有效的验证码!").css("color","red");
             $("#code2").focus();
         }else if(!pwd_reg.test(pwd)){
             $("#span2").html("请输入正确格式密码").css("color","red");
             $("#password2").focus();
+        }else if(code3.toLowerCase() != code.toLowerCase() )
+        {
+            $("#span2").html("验证码输入错误!").css("color","red");
+            createCode();//刷新验证码
         }else{
             flag=true;
             $("#span2").html("");
         }
+
+
+
         a.preventDefault();
         if(flag){
             $.ajax({
                 url:"portalLogin1",
-                data:{"tel":tel,"code":code,"password":pwd},
+                data:{"tel":tel,"password":pwd},
                 datatype:"json",
                 type:"post",
                 cache:false,
@@ -631,6 +699,10 @@
             }
         );
     }
+
+
+
+
 
 
 

@@ -28,7 +28,7 @@
 
     function add() {
 
-        ajhouse.addTabs('新增管理员', 'admin-add');
+        ajhouse.addTabs('新增管理', 'admin-add');
     }
 
     function edit() {

@@ -70,6 +70,7 @@
             <element id="module-output" name="aj-manager-interface" />
           </element>
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.23" />
         </element>
       </element>
       <element id="directory" name="META-INF">

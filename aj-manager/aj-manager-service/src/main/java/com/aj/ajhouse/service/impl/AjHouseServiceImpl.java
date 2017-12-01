@@ -53,12 +53,14 @@ public class AjHouseServiceImpl implements AjHouseService{
     @Override
     public int addHouse(AjHouse ajHouse,String paramData, List<MultipartFile> images) {
 
-        int i=0;
+        int houseId=0;
+        int i = 0;
         try{
             //图片的地址，存入数据库
             String houseimageaddress="http://101.132.176.163/images/ajhouse/houseimage";
             //房屋id
             int id=(int)(Math.random()*65535)+1;
+            houseId = id;
             String name="ftp-house.properties";
             String host = PropKit.use(name).get("ftp.address");
             int port = PropKit.use(name).getInt("ftp.port");
@@ -93,7 +95,7 @@ public class AjHouseServiceImpl implements AjHouseService{
                     //存入一张图片地址
                     ajHouse.setImage(houseimageaddress);
                     ajHouse.setStatus(1);
-                    i = ajHouseDao.insert(ajHouse);
+                     i = ajHouseDao.insert(ajHouse);
                     //想房屋参数里存入数据
                     AjHouseParamHouse ajHouseParamHouse = new AjHouseParamHouse();
                     ajHouseParamHouse.setHouseId(id);
@@ -115,7 +117,7 @@ public class AjHouseServiceImpl implements AjHouseService{
             logger.error(e.getMessage(),e);
             e.printStackTrace();
         }
-        return i;
+        return houseId;
     }
 
     @Override
@@ -157,5 +159,16 @@ public class AjHouseServiceImpl implements AjHouseService{
             e.printStackTrace();
         }
         return i;
+    }
+
+    @Override
+    public AjHouse getById(int itemId) {
+        AjHouse ajHouse=null;
+        try {
+            ajHouse = ajHouseDao.selectByPrimaryKey(itemId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ajHouse;
     }
 }

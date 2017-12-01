@@ -95,6 +95,7 @@ public class AjUserServiceImpl implements AjUserService {
         ajUser.setAccountnum(tel);
         ajUser.setPassword(password);
         ajUser.setTel(tel);
+        ajUser.setPhoto("http://101.132.176.163:80/images/lianjiaim_noagent.png");
         ajUser.setCreateTime(date);
         ajUser.setRole(1);
         ajUser.setStatus(0);

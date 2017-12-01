@@ -182,7 +182,7 @@ public class UserCenterAction {
         String introduce = request.getParameter("introduce");
         String tel = request.getParameter("tal");
 
-        if (nickname!=null||nickname.length()!=0||email!=null||email.length()!=0||idcard!=null||idcard.length()!=0||introduce!=null||introduce.length()!=0){
+        if (nickname==null||nickname.length()==0||email==null||email.length()==0||idcard==null||idcard.length()==0||introduce==null||introduce.length()==0){
             return "2";
         }
         map.put("nickname",nickname);

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aj.ajhouse.dao.AjHouseParamHouseMapperCustom" >
+
+  <sql id="Base_Column_List" >
+    id, house_id AS houseId, param_data as paramData, createtime, updatetime
+  </sql>
+
+  <select id="getByHouseId" parameterType="int" resultType="com.aj.ajhouse.pojo.po.AjHouseParamHouse">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    aj_house_param_house
+    WHERE
+    house_id = #{itemId}
+  </select>
+
+</mapper>

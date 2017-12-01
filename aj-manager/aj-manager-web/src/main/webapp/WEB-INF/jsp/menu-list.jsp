@@ -146,12 +146,5 @@
         url: 'menus/parent'
     });
 
-
-    //查询下拉框父标题
-    /*$('#status').combobox({
-        url:'menus/parent',
-        valueField:'id',
-        textField:'name'
-    });*/
 </script>
 

@@ -107,7 +107,8 @@
             },
             //在表单提交之后
             success: function (data) {
-                if(data>0) {
+                var obj = JSON.parse(data);
+                if(obj.success) {
                     $.messager.alert('温馨提示', '恭喜!房源发布成功!');
                     ajhouse.closeTabs('查看房源');
                     ajhouse.addTabs('查看房源', 'house-list');

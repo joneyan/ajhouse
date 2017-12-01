@@ -51,4 +51,45 @@
     </update>
 
 
+
+    <!--qjk问答分页查询模糊查询的计数和查询-->
+    <sql id="Where_quesTitle">
+        <where>
+            qu.status!=2
+            <if test="questionQuery!=null and questionQuery.quesTitle!=null and questionQuery.quesTitle!=''">
+                and  qu.ques_title like '%${questionQuery.quesTitle}%'
+            </if>
+        </where>
+    </sql>
+
+    <select id="countQuestionByTitle"  resultType="_int">
+        select count(1)
+        from aj_questions qu
+        <include refid="Where_quesTitle"/>
+    </select>
+
+    <select id="listQuestionByPageInPortal" resultType="com.aj.ajhouse.pojo.vo.Question">
+        select
+        qu.id, qu.ques_title as quesTitle, qu.ques_content as quesContent, qu.createtime ,qu.solvetime, qu.userid ,qu.status
+        from aj_questions qu
+        /*left join aj_user u on qu.userid=u.id*/
+        <include refid="Where_quesTitle"/>
+        ORDER BY qu.createtime DESC
+        limit #{pageBean.offset},#{pageBean.pageSize}
+    </select>
+
+    <select id="selectQuestionByIdInPortal" resultType="com.aj.ajhouse.pojo.vo.Question">
+        select
+        qu.id, qu.ques_title as quesTitle, qu.ques_content as quesContent, qu.createtime ,qu.solvetime, qu.userid ,qu.status
+        from aj_questions qu
+        WHERE qu.id = #{id}
+    </select>
+
+    <select id="selectNewIdByUserIdInPortal" resultType="int">
+        select MAX(id)
+        from aj_questions
+        where userid = #{ajUser.id}
+    </select>
+
+
 </mapper>

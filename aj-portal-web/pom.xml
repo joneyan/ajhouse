@@ -124,6 +124,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        <!-- 动态页面静态化 -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>aj-portal-web</finalName>
@@ -134,6 +139,7 @@
                 <configuration>
                     <port>8081</port>
                     <path>/ajhouse</path>
+                    <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
         </plugins>

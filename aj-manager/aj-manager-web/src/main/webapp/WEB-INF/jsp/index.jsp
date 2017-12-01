@@ -98,8 +98,14 @@
                 </li>
             </ul>
         </div>
+        <div title="索引库管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+            <ul class="easyui-tree">
+                <li data-options="attributes:{'href':'solr-add'}">一键导入索引库</li>
+            </ul>
+        </div>
     </div>
 </div>
+
 <div data-options="region:'center'" style="background:#eee;">
     <div id="tab" class="easyui-tabs" data-options="fit:true">
         <div title="欢迎页面" style="padding:20px;">

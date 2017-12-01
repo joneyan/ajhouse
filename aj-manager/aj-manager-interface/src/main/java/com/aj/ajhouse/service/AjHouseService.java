@@ -15,4 +15,6 @@ public interface AjHouseService {
     Result<AjHouse> listHouseByPage(Page page, Order order, AjHouseQuery query);
 
     int stopHouse(List<Integer> ids);
+
+    AjHouse getById(int itemId);
 }

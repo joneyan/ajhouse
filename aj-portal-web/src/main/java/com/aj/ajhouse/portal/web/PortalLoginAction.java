@@ -39,10 +39,10 @@ public class PortalLoginAction {
         return "success";
     }
 
-    //手机快捷登录/用户注册
+    //手机快捷登录
     @ResponseBody
     @RequestMapping("/portalLogin")
-    public String login(HttpServletRequest request,String tel,String code,String messageCode,String password){
+    public String login(HttpServletRequest request,String tel,String messageCode,String password){
 
         String msCode = "";
 
@@ -54,8 +54,8 @@ public class PortalLoginAction {
                 }
             }
         }
-        System.out.println("输入的短信验证码:"+messageCode);
-        System.out.println("验证码:"+msCode);
+
+        System.out.println(password);
 
         if(msCode.equals(messageCode)) {
             System.out.println("调用service存入数据库");
@@ -89,7 +89,7 @@ public class PortalLoginAction {
 
             return "0";
         }else{
-            return "2";
+            return "1";
         }
     }
 
@@ -97,7 +97,7 @@ public class PortalLoginAction {
     //账号密码登录
     @ResponseBody
     @RequestMapping("/portalLogin1")
-    public String login1(String tel,String code,String password,HttpServletRequest request) {
+    public String login1(String tel,String password,HttpServletRequest request) {
 
         AjUser ajUser = null;
         ajUser = ajUserService.findByTel(tel);
@@ -120,6 +120,57 @@ public class PortalLoginAction {
 
         return "0";
     }
+
+    //用户注册
+    @ResponseBody
+    @RequestMapping("/portalRegester")
+    public String regester(HttpServletRequest request,String tel,String messageCode,String password){
+
+        String msCode = "";
+
+        Cookie[] cookies = request.getCookies();
+        if(cookies!=null){
+            for(Cookie c:cookies) {
+                if ("messageCode".equals(c.getName())) {
+                    msCode = c.getValue();
+                }
+            }
+        }
+
+        if(msCode.equals(messageCode)) {
+            System.out.println("调用service");
+            AjUser ajUser = null;
+            ajUser = ajUserService.findByTel(tel);
+            if(ajUser==null){//用户不存在,需要注册,再登录
+                System.out.println("用户不存在,需要注册,再登录");
+                int i = ajUserService.addUser(tel,password);
+                if (i == 1) {
+                    System.out.println("注册成功!");
+                    ajUser = ajUserService.findByTel(tel);
+                    //获取最后登录的时间,并且把时间存到session中
+                    Date lastloginTime = ajUser.getLastloginTime();
+                    ajUser.setLastloginTime(new Date());
+
+                    //把更新好的最后时间的对象存到数据库e中
+                    ajUserService.updateUser(ajUser);
+
+                    //把用户存到session中
+                    HttpSession session = request.getSession();
+                    session.setAttribute("ajUser",ajUser);
+                    session.setAttribute("lastloginTime",lastloginTime);
+                } else {
+                    System.out.println("注册成功失败!");
+                }
+            }else{
+                return "2"; //用户已经存在,不能再注册了
+            }
+            return "0";
+        }else{
+            return "1";
+        }
+    }
+
+
     //用户注销
     @ResponseBody
     @RequestMapping("/portalLogout")
