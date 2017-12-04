@@ -88,6 +88,7 @@ public class QuestionAction {
         //暂时设置用户id，应该直接从页面的登录的用户中获取到的
         //ajUser.setId(31);
         //
+        ajQuestions.setId(null);
         ajQuestions.setCreatetime(new Date());
         ajQuestions.setStatus(0);
         ajQuestions.setUserid(ajUser.getId());

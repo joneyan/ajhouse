@@ -12,7 +12,6 @@
       <module fileurl="file://$PROJECT_DIR$/aj-parent/aj-parent.iml" filepath="$PROJECT_DIR$/aj-parent/aj-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/aj-portal-web/aj-portal-web.iml" filepath="$PROJECT_DIR$/aj-portal-web/aj-portal-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/aj-search-web/aj-search-web.iml" filepath="$PROJECT_DIR$/aj-search-web/aj-search-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aj-search-web/aj-search-web.iml" filepath="$PROJECT_DIR$/aj-search-web/aj-search-web.iml" />
     </modules>
   </component>
 </project>
