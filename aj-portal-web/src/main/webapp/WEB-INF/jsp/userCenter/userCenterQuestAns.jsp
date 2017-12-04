@@ -181,8 +181,8 @@
                     <p class="rh-title">您可能感兴趣的房源</p>
                     <ul class="rh-items">
                         <li class="rh-item">
-                            <a href="#" class="rh-item-content">
-                                <img src="./用户中心－看房记录_files/240x180c.jpg" width="182" height="135">
+                            <a href="#" class="rh-item-content" >
+                                <img src="http://101.132.176.163/images/1.jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">碧桂园</span>
                                 <p class="item-title">首付3成，精装统一交付，带产权车位，小区内人车分流，配套齐全</p>
@@ -192,7 +192,7 @@
                         </li>
                         <li class="rh-item">
                             <a href="#" class="rh-item-content">
-                                <img src="./用户中心－看房记录_files/240x180c(1).jpg" width="182" height="135">
+                                <img src="http://101.132.176.163/images/2.jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">圣鑫苑(三期)</span>
                                 <p class="item-title">看房有钥匙 送大花园 景观房！南北通大一房改两房，产权清晰，</p>
@@ -202,7 +202,7 @@
                         </li>
                         <li class="rh-item">
                             <a href="#" class="rh-item-content">
-                                <img src="./用户中心－看房记录_files/240x180c(2).jpg" width="182" height="135">
+                                <img src="http://101.132.176.163/images/3.jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">圣鑫苑(三期)</span>
                                 <p class="item-title">看房随时！有钥匙 咫尺大润发 南北通户型 傅雷学校房 景观房</p>
@@ -212,12 +212,11 @@
                         </li>
                         <li class="rh-item">
                             <a href="#" class="rh-item-content">
-                                <img src="./用户中心－看房记录_files/240x180c(3).jpg" width="182" height="135">
+                                <img src="http://101.132.176.163/images/4.jpg" width="182" height="135">
                                 <span class="community-area"></span>
                                 <span class="community-text">永德小区</span>
-                                <p class="item-title">永德小区 31平米130万 房东忍痛割肉 你还在等什么？</p>
-                                <p class="item-info"><span class="item-price">130万</span><span class="item-info-sub">1室1厅，31平米</span>
-                                </p>
+                                <p class="item-title">永德小区 31平米130万  房东忍痛割肉  你还在等什么？</p>
+                                <p class="item-info"><span class="item-price">130万</span><span class="item-info-sub">1室1厅，31平米</span></p>
                             </a>
                         </li>
                     </ul>

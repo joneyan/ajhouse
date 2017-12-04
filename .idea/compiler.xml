@@ -13,6 +13,7 @@
         <module name="aj-manager-service" />
         <module name="aj-manager-web" />
         <module name="aj-portal-web" />
+        <module name="aj-search-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +26,7 @@
       <module name="aj-manager-web" target="1.8" />
       <module name="aj-parent" target="1.8" />
       <module name="aj-portal-web" target="1.8" />
+      <module name="aj-search-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

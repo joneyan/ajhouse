@@ -22,6 +22,8 @@
     <script type="text/javascript" src="https://s1.ljcdn.com/feroot/dep/common-require/html5.js?_v=20171118131311"></script>
 
 
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+
     <script src="js/common.js"/>
     <script src="js/fe.js"/>
     <script src="js/html5.js"/>
@@ -186,14 +188,17 @@
 <div class="overview">
     <div class="img" id="topImg">
         <div class="imgContainer">
-            <img class="new-default-icon" src="" alt="厅" style="display: block;" data-pic="" data-size="1420x800">
+            <img class="new-default-icon" src="${ajHouseImages[0].pic}" alt="厅" style="display: block;" data-pic="" data-size="1420x800">
             <span style="display: block;">厅</span></div>
         <div class="thumbnail" id="thumbnail2">
             <div class="pre">&lt;</div>
             <ul class="smallpic">
-                <li data-src="" data-size="1420x800" data-desc="厅" data-pic="" class="selected">
-                    <img src="" alt="">
-                </li>
+                <#list ajHouseImages as image>
+                    <li data-src="" data-size="1420x800" data-desc="厅" data-pic="" class="selected">
+                        <img src="${image.pic}">
+                    </li>
+                </#list>
+
             </ul>
             <div class="next">&gt;</div>
         </div>
@@ -257,37 +262,18 @@
                 <h2><div class="title">基本信息</div></h2>
                 <div class="introContent">
                     <div class="base">
-                        <div class="name">基本属性</div>
+                        <div class="name" id="basename"></div>
                         <div class="content">
-                            <ul>
-                                <li><span class="label">房屋信息</span></li>
-                                <li><span class="label">所在楼层</span>中楼层 (共5层)</li>
-                                <li><span class="label">建筑面积</span>47.33㎡</li>
-                                <li><span class="label">户型结构</span>平层</li>
-                                <li><span class="label">套内面积</span>暂无数据</li>
-                                <li><span class="label">建筑类型</span>板楼</li>
-                                <li><span class="label">房屋朝向</span>南 北</li>
-                                <li><span class="label">建筑结构</span>砖混结构</li>
-                                <li><span class="label">装修情况</span>简装</li>
-                                <li><span class="label">梯户比例</span>一梯三户</li>
-                                <li><span class="label">配备电梯</span>暂无数据</li>
-                                <li><span class="label">产权年限</span>70年</li>
+                            <ul id="baseInfo">
+
                             </ul>
                         </div>
                     </div>
                     <div class="transaction">
-                        <div class="name">交易属性</div>
+                        <div class="name" id="transname"></div>
                         <div class="content">
-                            <ul>
-                                <li><span class="label">挂牌时间</span>2017-10-22</li>
-                                <li><span class="label">交易权属</span>商品房</li>
-                                <li><span class="label">上次交易</span>2010-04-26</li>
-                                <li><span class="label">房屋用途</span>普通住宅</li>
-                                <li><span class="label">房屋年限</span>满五年</li>
-                                <li><span class="label">产权所属</span>共有</li>
-                                <li><span class="label">抵押信息</span><span style="display:inline-block;width:64%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;" title="有抵押 20万元">有抵押 20万元</span></li>
-                                <li><span class="label">房本备件</span>已上传房本照片</li>
-                                <li><span class="label">房源编码</span>171022312721</li>
+                            <ul id="transInfo">
+
                             </ul>
                         </div>
                     </div>
@@ -448,30 +434,11 @@
                             <img src="${ajHouseImages[0].pic}" alt="厅">
                             <span class="name">厅</span>
                         </div>
-                        <div data-index="1">
-                            <img src="picture/ershoufang/5b4657b7-144c-4cf3-a4b9-462aa88ae019.jpg" alt="厅">
-                            <span class="name">厅</span>
-                        </div>
-                        <div data-index="2">
-                            <img src="picture/ershoufang/839e28a3-56bc-4efb-9005-830cccd43f22.jpg" alt="卧室A">
-                            <span class="name">卧室A</span>
-                        </div>
-                        <div data-index="3">
-                            <img src="picture/ershoufang/30439b39-9772-4c28-bed2-9e51aed9c07f.jpg" alt="户型图">
-                            <span class="name">户型图</span>
-                        </div>
-                        <div data-index="4">
-                            <img src="picture/ershoufang/504425c1-760c-49d6-b2ac-1db7dd73d895.jpg" alt="卧室B">
-                            <span class="name">卧室B</span>
-                        </div>
-                        <div data-index="5">
-                            <img src="picture/ershoufang/78c9296a-e3cd-4ec0-bcb3-79f88d199dec_002.jpg" alt="厨房">
-                            <span class="name">厨房</span>
-                        </div>
-                        <div data-index="6">
-                            <img src="picture/ershoufang/50af0ac4-0209-4a10-abe7-1b89467dee93.jpg" alt="卫生间">
-                            <span class="name">卫生间</span>
-                        </div>
+                        <#list ajHouseImages as image1>
+                            <div data-index="${image1_index+1}">
+                                <img src="${image1.pic}">
+                            </div>
+                        </#list>
                         <div class="left_fix"></div>
                         <div class="left_fix"></div>
                     </div>
@@ -1428,9 +1395,32 @@
 
 <script>
 
-    var ojb = JSON.parse(${paramData});
+    var obj = JSON.parse('${paramData}');
 
-    console.log(ojb);
+    console.log(obj);
 
+    $("#basename").html(obj[0].group);
+    $("#transname").html(obj[1].group);
+
+    var str1 = "";
+
+
+    for(var i=0;i<obj[0].params.length;i++){
+
+        str1=str1+'<li><span class="label">'+obj[0].params[i].k+'</span>'+obj[0].params[i].v+'</li>';
+
+    }
+
+    $("#baseInfo").html(str1);
+
+    var str2 = "";
+
+    for(var i=0;i<obj[1].params.length;i++){
+
+        str2=str2+'<li><span class="label">'+obj[1].params[i].k+'</span>'+obj[1].params[i].v+'</li>';
+
+    }
+
+    $("#transInfo").html(str2);
 
 </script>

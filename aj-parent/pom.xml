@@ -11,6 +11,7 @@
         <module>../aj-common</module>
         <module>../aj-manager</module>
         <module>../aj-portal-web</module>
+        <module>../aj-search-web</module>
     </modules>
 
     <!--打包方式，默认为jar-->

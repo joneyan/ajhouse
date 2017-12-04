@@ -1,7 +1,7 @@
 package com.aj.ajhouse.pojo.vo;
 
-public class AjHouseSearchCustom {
-    private int id;
+public class AjHouseSearchCustom2 {
+    private String id;
     private String title;
     private String address;
     private String image;
@@ -10,22 +10,14 @@ public class AjHouseSearchCustom {
     private String sellPoint;
     private String catName;
 
-    public AjHouseSearchCustom() {
+    public AjHouseSearchCustom2() {
     }
 
-    public String getCatName() {
-        return catName;
-    }
-
-    public void setCatName(String catName) {
-        this.catName = catName;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -75,5 +67,13 @@ public class AjHouseSearchCustom {
 
     public void setSellPoint(String sellPoint) {
         this.sellPoint = sellPoint;
+    }
+
+    public String getCatName() {
+        return catName;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
     }
 }

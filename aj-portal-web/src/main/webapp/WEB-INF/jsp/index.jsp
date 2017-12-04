@@ -264,7 +264,7 @@
 								<div class="box">
 									<div class="clear searchBox" data-action='/ershoufang/rs'>
 									<input class="text left txt searchVal" name="keyword" autocomplete="off" placeholder="试试输入地铁线/站在地铁附近找房，如 1号线" id="keyword-box">
-									<input class="btn home-ico ico-search left" id="findHouse" type="button" value="开始找房" daty-id="330100">
+									<input class="btn home-ico ico-search left" id="findHouse" type="button" value="开始找房" daty-id="330100" onclick="search()">
 									</div>
 								</div>	
 							</div>
@@ -700,11 +700,21 @@
         );
     }
 
+    //搜索
+	function search() {
+		var keyword = $("#keyword-box").val();
+		location.href="http://localhost:8082/ajhouse/searchHouse/rs"+keyword+"/pg1";
+	}
 
+    $("#keyword-box").keydown(function (e) {
+        var theEvent = window.event || e;
+        var code = theEvent.keyCode || theEvent.which;
+        if (code==13) {  //回车键的键值为13
+            var keyword = $("#keyword-box").val();
+            location.href="http://localhost:8082/ajhouse/searchHouse/rs"+keyword+"/pg1";
+        }
 
-
-
-
+    });
 
 </script>
 

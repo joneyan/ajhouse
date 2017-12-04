@@ -67,9 +67,11 @@ public class GenerateHTMLListener implements MessageListener {
             //生成静态页面
             template.process(dataModel,out);
             out.close();
+
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
     }
+
 }

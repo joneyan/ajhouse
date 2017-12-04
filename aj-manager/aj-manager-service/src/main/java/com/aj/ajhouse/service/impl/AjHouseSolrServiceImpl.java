@@ -1,8 +1,12 @@
 package com.aj.ajhouse.service.impl;
 
+import com.aj.ajhouse.common.dto.PageBean;
 import com.aj.ajhouse.dao.AjHouseSolrMapper;
+import com.aj.ajhouse.dao.SearchHouseDao;
 import com.aj.ajhouse.pojo.vo.AjHouseSearchCustom;
+import com.aj.ajhouse.pojo.vo.AjHouseSearchCustom2;
 import com.aj.ajhouse.service.AjHouseSolrService;
+import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
@@ -19,6 +23,8 @@ public class AjHouseSolrServiceImpl implements AjHouseSolrService {
     private AjHouseSolrMapper ajHouseSolrDao;
     @Autowired
     private SolrServer solrServer;
+    @Autowired
+    private SearchHouseDao searchHouseDao;
     @Override
     public void addSolr() {
         List<AjHouseSearchCustom> list=ajHouseSolrDao.listAllHouse();
@@ -61,5 +67,37 @@ public class AjHouseSolrServiceImpl implements AjHouseSolrService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public PageBean<AjHouseSearchCustom2> listHouseByPage(String keyword, Integer page, int rows) {
+        //创建一个SolrQuery对象
+        SolrQuery query = new SolrQuery();
+        //设置查询条件
+        if(!"".equals(keyword)){
+            query.setQuery(keyword);
+        }else{
+            query.setQuery("*");
+        }
+        //设置分页条件
+        if (page <=0 ) page = 1;
+        query.setStart((page - 1) * rows);
+        query.setRows(rows);
+        //设置默认搜索域
+        query.set("df", "house_keywords");
+        //开启高亮显示
+        query.setHighlight(true);
+        query.addHighlightField("house_title");
+        query.setHighlightSimplePre("<em style=\"color:red\">");
+        query.setHighlightSimplePost("</em>");
+        //调用dao执行查询
+        PageBean<AjHouseSearchCustom2> searchResult = searchHouseDao.search(query);
+        //计算总页数
+        long recordCount = searchResult.getTotalCount();
+        int totalPage = (int) ((recordCount + rows - 1) / rows);
+        //添加到返回结果
+        searchResult.setTotalPage(totalPage);
+        //返回结果
+        return searchResult;
     }
 }

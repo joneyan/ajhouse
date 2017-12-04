@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/aj-manager/aj-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/aj-portal-web" />
+    <file type="web" url="file://$PROJECT_DIR$/aj-search-web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
